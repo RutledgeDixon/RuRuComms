@@ -1,0 +1,10 @@
+C:\Users\rutle\source\repos\RuRu Comms\bin\Debug\RuRu Comms.exe.config
+C:\Users\rutle\source\repos\RuRu Comms\bin\Debug\RuRu Comms.exe
+C:\Users\rutle\source\repos\RuRu Comms\bin\Debug\RuRu Comms.pdb
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu Comms.csproj.AssemblyReference.cache
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu_Comms.Form1.resources
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu_Comms.Properties.Resources.resources
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu Comms.csproj.GenerateResource.cache
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu Comms.csproj.CoreCompileInputs.cache
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu Comms.exe
+C:\Users\rutle\source\repos\RuRu Comms\obj\Debug\RuRu Comms.pdb
