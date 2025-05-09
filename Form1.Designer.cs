@@ -40,7 +40,7 @@
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(12, 70);
+            this.txtLog.Location = new System.Drawing.Point(12, 84);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
@@ -50,9 +50,9 @@
             // 
             // btnConnectToServer
             // 
-            this.btnConnectToServer.Location = new System.Drawing.Point(15, 37);
+            this.btnConnectToServer.Location = new System.Drawing.Point(12, 43);
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(150, 23);
+            this.btnConnectToServer.Size = new System.Drawing.Size(150, 27);
             this.btnConnectToServer.TabIndex = 3;
             this.btnConnectToServer.Text = "Connect!";
             this.btnConnectToServer.UseVisualStyleBackColor = true;
@@ -60,9 +60,9 @@
             // 
             // btnSendMessage
             // 
-            this.btnSendMessage.Location = new System.Drawing.Point(222, 37);
+            this.btnSendMessage.Location = new System.Drawing.Point(222, 43);
             this.btnSendMessage.Name = "btnSendMessage";
-            this.btnSendMessage.Size = new System.Drawing.Size(150, 23);
+            this.btnSendMessage.Size = new System.Drawing.Size(150, 27);
             this.btnSendMessage.TabIndex = 4;
             this.btnSendMessage.Text = "Say Hello";
             this.btnSendMessage.UseVisualStyleBackColor = true;
@@ -73,23 +73,23 @@
             this.IPLabel.AutoSize = true;
             this.IPLabel.Location = new System.Drawing.Point(12, 14);
             this.IPLabel.Name = "IPLabel";
-            this.IPLabel.Size = new System.Drawing.Size(79, 13);
+            this.IPLabel.Size = new System.Drawing.Size(115, 20);
             this.IPLabel.TabIndex = 5;
             this.IPLabel.Text = "Magic Number:";
             this.IPLabel.Click += new System.EventHandler(this.IPLabel_Click);
             // 
             // IPText
             // 
-            this.IPText.Location = new System.Drawing.Point(97, 11);
+            this.IPText.Location = new System.Drawing.Point(133, 11);
             this.IPText.Name = "IPText";
-            this.IPText.Size = new System.Drawing.Size(100, 20);
+            this.IPText.Size = new System.Drawing.Size(100, 26);
             this.IPText.TabIndex = 6;
             this.IPText.TextChanged += new System.EventHandler(this.IPText_TextChanged);
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(384, 284);
+            this.ClientSize = new System.Drawing.Size(389, 296);
             this.Controls.Add(this.IPText);
             this.Controls.Add(this.IPLabel);
             this.Controls.Add(this.btnConnectToServer);

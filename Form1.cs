@@ -28,19 +28,27 @@ namespace RuRu_Comms
         }
 
         // Connect to the server
-        private void ConnectToServer(string serverIp, int port)
+        private async void ConnectToServer(string serverIp, int port)
         {
+            AppendLog("Connecting to server {serverIp} on port {port}");
             try
             {
                 _tcpClient = new TcpClient();
-                _tcpClient.Connect(serverIp, port);
-                _networkStream = _tcpClient.GetStream();
-                AppendLog("Connected to server!");
+                var connectTask = _tcpClient.ConnectAsync(serverIp, port);
+                if (await Task.WhenAny(connectTask, Task.Delay(3000)) == connectTask)
+                {
+                    _networkStream = _tcpClient.GetStream();
+                    AppendLog("Connected to server!");
 
-                // Start a thread to listen for messages from the server
-                Thread receiveThread = new Thread(ReceiveMessages);
-                receiveThread.IsBackground = true;
-                receiveThread.Start();
+                    // Start a thread to listen for messages from the server
+                    Thread receiveThread = new Thread(ReceiveMessages);
+                    receiveThread.IsBackground = true;
+                    receiveThread.Start();
+                }
+                else
+                {
+                    AppendLog("Connection timed out.");
+                }
             }
             catch (Exception ex)
             {
