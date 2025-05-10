@@ -37,27 +37,35 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.IPText = new System.Windows.Forms.TextBox();
+            this.noteforfuture = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.displayMesg1 = new System.Windows.Forms.TextBox();
+            this.displayMesg0 = new System.Windows.Forms.TextBox();
+            this.displayFeelingButton0 = new System.Windows.Forms.Button();
+            this.displayFeelingButton1 = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.feelingWheelPanel = new System.Windows.Forms.Panel();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnConnectToServer
             // 
             this.btnConnectToServer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnConnectToServer.Location = new System.Drawing.Point(37, 57);
+            this.btnConnectToServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnectToServer.Location = new System.Drawing.Point(74, 55);
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(150, 27);
+            this.btnConnectToServer.Size = new System.Drawing.Size(150, 30);
             this.btnConnectToServer.TabIndex = 3;
             this.btnConnectToServer.Text = "Connect!";
             this.btnConnectToServer.UseVisualStyleBackColor = true;
@@ -66,9 +74,10 @@
             // btnSendMessage
             // 
             this.btnSendMessage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSendMessage.Location = new System.Drawing.Point(262, 57);
+            this.btnSendMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSendMessage.Location = new System.Drawing.Point(372, 54);
             this.btnSendMessage.Name = "btnSendMessage";
-            this.btnSendMessage.Size = new System.Drawing.Size(150, 27);
+            this.btnSendMessage.Size = new System.Drawing.Size(150, 32);
             this.btnSendMessage.TabIndex = 4;
             this.btnSendMessage.Text = "Message";
             this.btnSendMessage.UseVisualStyleBackColor = true;
@@ -86,7 +95,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(456, 573);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(603, 555);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // tableLayoutPanel2
@@ -97,22 +106,34 @@
             this.tableLayoutPanel2.Controls.Add(this.IPText, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnConnectToServer, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnSendMessage, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.noteforfuture, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 94);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(597, 94);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // IPText
             // 
             this.IPText.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.IPText.Location = new System.Drawing.Point(37, 10);
+            this.IPText.Location = new System.Drawing.Point(74, 10);
             this.IPText.Name = "IPText";
             this.IPText.Size = new System.Drawing.Size(150, 26);
             this.IPText.TabIndex = 7;
+            // 
+            // noteforfuture
+            // 
+            this.noteforfuture.AutoSize = true;
+            this.noteforfuture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.noteforfuture.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.noteforfuture.Location = new System.Drawing.Point(301, 0);
+            this.noteforfuture.Name = "noteforfuture";
+            this.noteforfuture.Size = new System.Drawing.Size(293, 47);
+            this.noteforfuture.TabIndex = 8;
+            this.noteforfuture.Text = "add nickname option here?";
             // 
             // tabControl1
             // 
@@ -121,21 +142,22 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(3, 103);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(450, 467);
+            this.tabControl1.Size = new System.Drawing.Size(597, 449);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.txtLog);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(442, 434);
+            this.tabPage1.Size = new System.Drawing.Size(589, 407);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Nerdy";
+            this.tabPage1.Text = "Nerdy Style";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtLog
@@ -146,69 +168,120 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(436, 428);
+            this.txtLog.Size = new System.Drawing.Size(583, 401);
             this.txtLog.TabIndex = 5;
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.vScrollBar1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Controls.Add(this.tableLayoutPanel3);
+            this.tabPage2.Location = new System.Drawing.Point(4, 41);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(442, 434);
+            this.tabPage2.Size = new System.Drawing.Size(576, 370);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Pretty";
+            this.tabPage2.Text = "Neat Style";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // vScrollBar1
+            // tableLayoutPanel3
             // 
-            this.vScrollBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.vScrollBar1.Location = new System.Drawing.Point(402, 3);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(26, 428);
-            this.vScrollBar1.TabIndex = 0;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.displayMesg1, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.displayMesg0, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.displayFeelingButton0, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.displayFeelingButton1, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(570, 364);
+            this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // feelingWheelPanel
+            // displayMesg1
             // 
-            this.feelingWheelPanel.BackColor = System.Drawing.Color.White;
-            this.feelingWheelPanel.Location = new System.Drawing.Point(10, 10);
-            this.feelingWheelPanel.Name = "feelingWheelPanel";
-            this.feelingWheelPanel.Size = new System.Drawing.Size(400, 400);
-            this.feelingWheelPanel.TabIndex = 0;
-            this.feelingWheelPanel.Visible = true;
-            this.feelingWheelPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FeelingWheelPanel_Paint);
-            this.feelingWheelPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseClick);
-            this.feelingWheelPanel.BringToFront();
+            this.displayMesg1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.displayMesg1.Location = new System.Drawing.Point(288, 73);
+            this.displayMesg1.Multiline = true;
+            this.displayMesg1.Name = "displayMesg1";
+            this.displayMesg1.ReadOnly = true;
+            this.displayMesg1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.displayMesg1.Size = new System.Drawing.Size(279, 288);
+            this.displayMesg1.TabIndex = 7;
             // 
-            // tabPage4
+            // displayMesg0
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 29);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(442, 434);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Fun?... tbd";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.displayMesg0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.displayMesg0.Location = new System.Drawing.Point(3, 73);
+            this.displayMesg0.Multiline = true;
+            this.displayMesg0.Name = "displayMesg0";
+            this.displayMesg0.ReadOnly = true;
+            this.displayMesg0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.displayMesg0.Size = new System.Drawing.Size(279, 288);
+            this.displayMesg0.TabIndex = 6;
+            // 
+            // displayFeelingButton0
+            // 
+            this.displayFeelingButton0.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.displayFeelingButton0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayFeelingButton0.Location = new System.Drawing.Point(3, 3);
+            this.displayFeelingButton0.Name = "displayFeelingButton0";
+            this.displayFeelingButton0.Size = new System.Drawing.Size(279, 64);
+            this.displayFeelingButton0.TabIndex = 0;
+            this.displayFeelingButton0.Text = "button1";
+            this.displayFeelingButton0.UseVisualStyleBackColor = true;
+            // 
+            // displayFeelingButton1
+            // 
+            this.displayFeelingButton1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.displayFeelingButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.displayFeelingButton1.Location = new System.Drawing.Point(288, 3);
+            this.displayFeelingButton1.Name = "displayFeelingButton1";
+            this.displayFeelingButton1.Size = new System.Drawing.Size(279, 64);
+            this.displayFeelingButton1.TabIndex = 1;
+            this.displayFeelingButton1.Text = "button2";
+            this.displayFeelingButton1.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
-            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Controls.Add(this.feelingWheelPanel);
+            this.tabPage3.Location = new System.Drawing.Point(4, 41);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(442, 434);
+            this.tabPage3.Size = new System.Drawing.Size(576, 370);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Feeling Wheel";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
-            this.tabPage3.Controls.Add(this.feelingWheelPanel);
+            // 
+            // feelingWheelPanel
+            // 
+            this.feelingWheelPanel.BackColor = System.Drawing.Color.White;
+            this.feelingWheelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.feelingWheelPanel.Location = new System.Drawing.Point(3, 3);
+            this.feelingWheelPanel.Name = "feelingWheelPanel";
+            this.feelingWheelPanel.Size = new System.Drawing.Size(570, 364);
+            this.feelingWheelPanel.TabIndex = 0;
+            this.feelingWheelPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FeelingWheelPanel_Paint);
+            this.feelingWheelPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseClick);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 41);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(576, 370);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Fun?... tbd";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(456, 573);
+            this.ClientSize = new System.Drawing.Size(603, 555);
             this.Controls.Add(this.tableLayoutPanel1);
-            //this.Controls.Add(this.feelingWheelPanel);
             this.Name = "Form1";
             this.Text = "Peer-to-Peer App";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -219,6 +292,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -232,8 +308,13 @@
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TextBox IPText;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TextBox displayMesg1;
+        private System.Windows.Forms.TextBox displayMesg0;
+        private System.Windows.Forms.Button displayFeelingButton0;
+        private System.Windows.Forms.Button displayFeelingButton1;
+        private System.Windows.Forms.Label noteforfuture;
     }
 }
 

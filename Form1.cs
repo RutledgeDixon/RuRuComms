@@ -15,17 +15,17 @@ using Newtonsoft.Json;
 //RuRu Comms works with a simple TCP server, which takes a message from a client and sends it to all other clients
 //NOTE: This program is designed for end users who do not have knowledge of networking
 //Code for translating messages is "BxF", which in decimal is 11x15 or November 15th
+//Code for feelings is "BxF_FEEL_"
 
 //NOTE: Feeling wheel exists in data form as Feeling class with root node rootFeeling
 //      Need to add functionality to feeling wheel tab, a wheel of feelings, select one
 //      and its children will populate the wheel, until you get to the end of the wheel
 
 //TODO:
-//      update colors on feeling wheel
+//      update colors on feeling wheel - done
 //      add animation to feeling wheel? like mouse-over
 //      add reset button to feeling wheel
-//      add code for sending feeling wheel information - like BxFsad or something???
-//      fix text on feeling wheel
+//      fix text on feeling wheel - done
 //      add end to color wheel function
 
 //      for server: add a variable that keeps current feeling for each client, sends it upon
@@ -40,6 +40,7 @@ namespace RuRu_Comms
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
         private const string IP_PLACEHOLDER = "Magic Number...";
+        private Font wheelFont = new Font("Arial", 12, FontStyle.Bold);
 
         //feelings for feelings wheel
         class Feeling
@@ -265,13 +266,21 @@ namespace RuRu_Comms
 
         private void FeelingWheelPanel_Paint(object sender, PaintEventArgs e)
         {
-            Console.WriteLine("FeelingWheelPanel_Paint called");
-            AppendLog("FeelingWheelPanel_Paint called");
+            //Console.WriteLine("FeelingWheelPanel_Paint called");
+            //AppendLog("FeelingWheelPanel_Paint called");
 
             if (currentFeeling == null) currentFeeling = rootFeeling;
 
             var graphics = e.Graphics;
+            // Save the current state of the Graphics object
+            var state = graphics.Save();
+
+            // Rotate the Graphics object around the center of the panel
             var center = new Point(feelingWheelPanel.Width / 2, feelingWheelPanel.Height / 2);
+            graphics.TranslateTransform(center.X, center.Y);
+            graphics.RotateTransform(-90);
+            graphics.TranslateTransform(-center.X, -center.Y);
+
             var radius = Math.Min(feelingWheelPanel.Width, feelingWheelPanel.Height) / 2 - 10;
 
             // Get the number of children
@@ -297,7 +306,7 @@ namespace RuRu_Comms
                 var textPoint = GetPointOnCircle(center, radius / 2, midAngle);
                 var feelingName = feelings[i].Name;
                 var textSize = graphics.MeasureString(feelingName, this.Font);
-                DrawRotatedString(graphics, feelingName, this.Font, Brushes.Black, textPoint, midAngle);
+                DrawRotatedString(graphics, feelingName, wheelFont, Brushes.Black, textPoint, midAngle);
                 //startAngle += sweepAngle;
                 startAngle += anglePerSegment;
             }
@@ -315,7 +324,8 @@ namespace RuRu_Comms
 
             // Rotate the Graphics object
             //  if the object would be more upside down than right side up (very specific I know), flip it upside down
-            if (angle >= 90 && angle < 270)
+            //  NOTE: checking >= 90 and < 270, but adding 90 because the graphics object is rotated -90 to begin with
+            if (angle >= 90+90 && angle < 270+90)
             {
                 angle += 180;
             }
@@ -363,6 +373,9 @@ namespace RuRu_Comms
             float angle = (float)(Math.Atan2(dy, dx) * 180 / Math.PI);
             if (angle < 0) angle += 360;
 
+            //adjust angle to account for -90 degree rotation
+            angle = (angle + 90) % 360;
+
             // Determine which segment was clicked
             var feelings = currentFeeling.Children;
             int count = feelings.Count;
@@ -375,6 +388,23 @@ namespace RuRu_Comms
                 currentFeeling = feelings[clickedIndex];
                 feelingWheelPanel.Invalidate(); // Redraw the panel
             }
+            if (currentFeeling.Children.Count == 0)
+            {
+                // Send the feeling to the server
+                sendFeeling(currentFeeling.Name);
+                //update tab name with the current feeling
+                tabPage3.Text = currentFeeling.Name.Substring(0, 1).ToUpper() + currentFeeling.Name.Substring(1, currentFeeling.Name.Length-1);
+                //reset panel and redraw
+                currentFeeling = null;
+                feelingWheelPanel.Invalidate(); // Redraw the panel
+            }
+        }
+
+        private void sendFeeling(string feeling)
+        {
+            string message = "BxF_FEEL_" + feeling;
+            SendMessage(message);
+            AppendLog($"Sent feeling: {message}");
         }
 
         private void IPLabel_Click(object sender, EventArgs e)
@@ -396,10 +426,5 @@ namespace RuRu_Comms
 
         }
 
-        private void resetWheel_Click(object sender, EventArgs e)
-        {
-            //currentFeeling = null;
-            //feelingWheelPanel.Invalidate(); // Redraw the panel
-        }
     }
 }
