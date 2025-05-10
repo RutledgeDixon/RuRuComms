@@ -30,7 +30,7 @@ namespace RuRu_Comms
         // Connect to the server
         private async void ConnectToServer(string serverIp, int port)
         {
-            AppendLog("Connecting to server {serverIp} on port {port}");
+            AppendLog($"Connecting to server {serverIp} on port {port}");
             try
             {
                 _tcpClient = new TcpClient();
@@ -125,6 +125,11 @@ namespace RuRu_Comms
 
         }
         private void IPText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
         {
 
         }
