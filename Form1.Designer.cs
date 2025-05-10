@@ -174,10 +174,10 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.tableLayoutPanel3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 41);
+            this.tabPage2.Location = new System.Drawing.Point(4, 38);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(576, 370);
+            this.tabPage2.Size = new System.Drawing.Size(589, 407);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Neat Style";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -197,18 +197,18 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(570, 364);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(583, 401);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // displayMesg1
             // 
             this.displayMesg1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.displayMesg1.Location = new System.Drawing.Point(288, 73);
+            this.displayMesg1.Location = new System.Drawing.Point(294, 73);
             this.displayMesg1.Multiline = true;
             this.displayMesg1.Name = "displayMesg1";
             this.displayMesg1.ReadOnly = true;
             this.displayMesg1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.displayMesg1.Size = new System.Drawing.Size(279, 288);
+            this.displayMesg1.Size = new System.Drawing.Size(286, 325);
             this.displayMesg1.TabIndex = 7;
             // 
             // displayMesg0
@@ -219,7 +219,7 @@
             this.displayMesg0.Name = "displayMesg0";
             this.displayMesg0.ReadOnly = true;
             this.displayMesg0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.displayMesg0.Size = new System.Drawing.Size(279, 288);
+            this.displayMesg0.Size = new System.Drawing.Size(285, 325);
             this.displayMesg0.TabIndex = 6;
             // 
             // displayFeelingButton0
@@ -228,20 +228,20 @@
             this.displayFeelingButton0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.displayFeelingButton0.Location = new System.Drawing.Point(3, 3);
             this.displayFeelingButton0.Name = "displayFeelingButton0";
-            this.displayFeelingButton0.Size = new System.Drawing.Size(279, 64);
+            this.displayFeelingButton0.Size = new System.Drawing.Size(285, 64);
             this.displayFeelingButton0.TabIndex = 0;
-            this.displayFeelingButton0.Text = "button1";
+            this.displayFeelingButton0.Text = "button0";
             this.displayFeelingButton0.UseVisualStyleBackColor = true;
             // 
             // displayFeelingButton1
             // 
             this.displayFeelingButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.displayFeelingButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayFeelingButton1.Location = new System.Drawing.Point(288, 3);
+            this.displayFeelingButton1.Location = new System.Drawing.Point(294, 3);
             this.displayFeelingButton1.Name = "displayFeelingButton1";
-            this.displayFeelingButton1.Size = new System.Drawing.Size(279, 64);
+            this.displayFeelingButton1.Size = new System.Drawing.Size(286, 64);
             this.displayFeelingButton1.TabIndex = 1;
-            this.displayFeelingButton1.Text = "button2";
+            this.displayFeelingButton1.Text = "button1";
             this.displayFeelingButton1.UseVisualStyleBackColor = true;
             // 
             // tabPage3

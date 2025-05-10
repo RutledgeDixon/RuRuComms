@@ -22,11 +22,8 @@ using Newtonsoft.Json;
 //      and its children will populate the wheel, until you get to the end of the wheel
 
 //TODO:
-//      update colors on feeling wheel - done
+//      update colors that feeling wheel displays on neat style
 //      add animation to feeling wheel? like mouse-over
-//      add reset button to feeling wheel
-//      fix text on feeling wheel - done
-//      add end to color wheel function
 
 //      for server: add a variable that keeps current feeling for each client, sends it upon
 //                  connection to other clients, updated by feeling wheel
@@ -49,6 +46,10 @@ namespace RuRu_Comms
             public Feeling Parent { get; set; }
             public List<Feeling> Children { get; set; } = new List<Feeling>();
             public Feeling(){}
+            public Feeling getParent()
+            {
+                return this.Parent;
+            }
         }
 
         private Feeling rootFeeling = new Feeling {Name = "Feeling"};
@@ -345,7 +346,7 @@ namespace RuRu_Comms
         // Helper to get a color for each segment
         private Color GetColorForIndex(int index)
         {
-            var colors = new[] {"#BF553E", "#3E77BF", "#3EBF5D", "#E7E432", "#BF8A3E", "#983EBF" };
+            var colors = new[] { "#BF8A3E", "#983EBF", "#3E77BF", "#BF553E", "#3EBF5D", "#E7E432" };
             return ColorTranslator.FromHtml(colors[index % colors.Length]);
         }
 
@@ -390,10 +391,16 @@ namespace RuRu_Comms
             }
             if (currentFeeling.Children.Count == 0)
             {
+                string capitalFeeling = currentFeeling.Name.Substring(0, 1).ToUpper() + currentFeeling.Name.Substring(1, currentFeeling.Name.Length - 1);
                 // Send the feeling to the server
                 sendFeeling(currentFeeling.Name);
+
                 //update tab name with the current feeling
-                tabPage3.Text = currentFeeling.Name.Substring(0, 1).ToUpper() + currentFeeling.Name.Substring(1, currentFeeling.Name.Length-1);
+                //tabPage3.Text = capitalFeeling;
+
+                //update neat style with current feeling
+                updateFeelingOnNeatStyle(currentFeeling);
+
                 //reset panel and redraw
                 currentFeeling = null;
                 feelingWheelPanel.Invalidate(); // Redraw the panel
@@ -405,6 +412,49 @@ namespace RuRu_Comms
             string message = "BxF_FEEL_" + feeling;
             SendMessage(message);
             AppendLog($"Sent feeling: {message}");
+        }
+
+        private void updateFeelingOnNeatStyle(Feeling feeling)
+        {
+            string capitalFeeling = currentFeeling.Name.Substring(0, 1).ToUpper() + currentFeeling.Name.Substring(1, currentFeeling.Name.Length - 1);
+            displayFeelingButton1.Text = capitalFeeling;
+            Color feelColor = Color.White;
+
+            //determine the ultimate grandparent of the feeling and change color accordingly
+            string ancestor = feeling.getParent().getParent().Name;
+
+            if(ancestor.Equals("love")){
+                feelColor = ColorTranslator.FromHtml("#EB6969");
+            }
+            else if (ancestor.Equals("anger"))
+            {
+                feelColor = ColorTranslator.FromHtml("#DF9B6B");
+            }
+            else if (ancestor.Equals("sadness"))
+            {
+                feelColor = ColorTranslator.FromHtml("#6BA2DF");
+            }
+            else if (ancestor.Equals("fear"))
+            {
+                feelColor = ColorTranslator.FromHtml("#D16BDF");
+            }
+            else if (ancestor.Equals("surprise"))
+            {
+                feelColor = ColorTranslator.FromHtml("#DADA60");
+            }
+            else if (ancestor.Equals("joy"))
+            {
+                feelColor = ColorTranslator.FromHtml("#60DCBC");
+            }
+            else
+            {
+                feelColor = Color.White;
+                AppendLog("Error: feeling ancestor not read correctly");
+            }
+
+            //update button and text box
+            displayFeelingButton1.BackColor = feelColor;
+            displayMesg1.BackColor = feelColor;
         }
 
         private void IPLabel_Click(object sender, EventArgs e)
