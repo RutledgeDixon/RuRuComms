@@ -19,3 +19,6 @@ C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.csproj.CoreCompileInp
 C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.exe
 C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.pdb
 C:\Users\rutle\source\repos\RuRuComms\obj\Debug\RuRu_Comms.MessageWindowForm.resources
+C:\Users\rutle\source\repos\RuRuComms\bin\Debug\Newtonsoft.Json.dll
+C:\Users\rutle\source\repos\RuRuComms\bin\Debug\Newtonsoft.Json.xml
+C:\Users\rutle\source\repos\RuRuComms\obj\Debug\RuRu Comms.csproj.Up2Date

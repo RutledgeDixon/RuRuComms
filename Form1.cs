@@ -10,8 +10,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using Newtonsoft.Json;
 
 //RuRu Comms works with a simple TCP server, which takes a message from a client and sends it to all other clients
+//NOTE: This program is designed for end users who do not have knowledge of networking
+//Code for translating messages is "BxF", which in decimal is 11x15 or November 15th
+
+//NOTE: Feeling wheel exists in data form as Feeling class with root node rootFeeling
+//      Need to add functionality to feeling wheel tab, a wheel of feelings, select one
+//      and its children will populate the wheel, until you get to the end of the wheel
+
+//TODO:
+//      update colors on feeling wheel
+//      add animation to feeling wheel? like mouse-over
+//      add reset button to feeling wheel
+//      add code for sending feeling wheel information - like BxF10-BxF99 or something
 
 namespace RuRu_Comms
 {
@@ -21,10 +34,36 @@ namespace RuRu_Comms
         private string IPAddress = "Error";
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
+        private const string IP_PLACEHOLDER = "Magic Number...";
+
+        //feelings for feelings wheel
+        class Feeling
+        {
+            public string Name { get; set; }
+            public Feeling Parent { get; set; }
+            public List<Feeling> Children { get; set; } = new List<Feeling>();
+            public Feeling(){}
+        }
+
+        private Feeling rootFeeling = new Feeling {Name = "Feeling"};
+        private Feeling currentFeeling = null;
+
 
         public Form1()
         {
             InitializeComponent();
+
+            //IPText placeholder code
+            SetPlaceholder(IPText, IP_PLACEHOLDER);
+            IPText.GotFocus += (s, e) => RemovePlaceholder(IPText, IP_PLACEHOLDER);
+            IPText.LostFocus += (s, e) => SetPlaceholder(IPText, IP_PLACEHOLDER);
+
+            //Initializing Feeling Tree
+            string jsonFilePath = "feelings.js"; // Path to your JSON file
+            BuildFeelingsTreeFromJson(jsonFilePath);
+
+            //testing feeling data
+            //printFeelingsTree();
         }
 
         // Connect to the server
@@ -35,6 +74,7 @@ namespace RuRu_Comms
             {
                 _tcpClient = new TcpClient();
                 var connectTask = _tcpClient.ConnectAsync(serverIp, port);
+                // Adding an explicit delay (because default TCP delay is too long)
                 if (await Task.WhenAny(connectTask, Task.Delay(3000)) == connectTask)
                 {
                     _networkStream = _tcpClient.GetStream();
@@ -80,6 +120,8 @@ namespace RuRu_Comms
 
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     AppendLog($"Received: {message}");
+                    //display the message on the pretty tab
+                    printPretty(message);
                 }
                 catch
                 {
@@ -87,6 +129,11 @@ namespace RuRu_Comms
                     break;
                 }
             }
+        }
+
+        private void printPretty(string message)
+        {
+            //idk what to do here yet - how much is print and how much is graphical?
         }
 
         private void btnConnectToServer_Click(object sender, EventArgs e)
@@ -128,6 +175,168 @@ namespace RuRu_Comms
             }
         }
 
+        private void SetPlaceholder(TextBox textBox, string placeholderText)
+        {
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = placeholderText;
+                textBox.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholder(TextBox textBox, string placeholderText)
+        {
+            if (textBox.Text == placeholderText)
+            {
+                textBox.Text = string.Empty;
+                textBox.ForeColor = Color.Black;
+            }
+        }
+
+        private void BuildFeelingsTreeFromJson(string jsonFilePath)
+        {
+            // Read the JSON file
+            string jsonContent = System.IO.File.ReadAllText(jsonFilePath);
+
+            // Deserialize the JSON into a Dictionary
+            var feelingsData = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonContent);
+
+            // Parse the JSON into a Feeling tree
+            ParseFeelingsTree(feelingsData, rootFeeling);
+        }
+
+        // recursively defines the feeling and each of its children
+        private void ParseFeelingsTree(Dictionary<string, object> json, Feeling parent)
+        {
+            foreach (var entry in json)
+            {
+                // Create a new Feeling object for the current entry
+                var child = new Feeling
+                {
+                    Name = entry.Key,
+                    Parent = parent
+                };
+                parent.Children.Add(child);
+
+                // Check if the value is a JObject and convert it to a dictionary for recursion
+                if (entry.Value is Newtonsoft.Json.Linq.JObject nestedObject)
+                {
+                    var nestedChildren = nestedObject.ToObject<Dictionary<string, object>>();
+                    ParseFeelingsTree(nestedChildren, child); // Recursively parse the nested children
+                }
+                else if (entry.Value is Dictionary<string, object> nestedChildren)
+                {
+                    ParseFeelingsTree(nestedChildren, child); // Recursively parse the nested children
+                }
+                else
+                {
+                    // Log or handle unexpected data types if needed
+                    AppendLog($"Unexpected data type for key: {entry.Key}");
+                }
+            }
+        }
+
+        private void printFeelingsTree()
+        {
+            
+            // Example: Print the root feeling and its children
+            AppendLog($"Root Feeling: {rootFeeling.Name}");
+            foreach (var child in rootFeeling.Children)
+            {
+                AppendLog($"Child Feeling: {child.Name}");
+                foreach (var grandchild in child.Children)
+                {
+                    AppendLog($"  Grandchild Feeling: {grandchild.Name}");
+                    foreach (var greatgrandchild in grandchild.Children)
+                    {
+                        AppendLog($"    Greatgrandchild Feeling: {greatgrandchild.Name}");
+                    }
+                }
+            }
+        }
+
+        private void FeelingWheelPanel_Paint(object sender, PaintEventArgs e)
+        {
+            if (currentFeeling == null) currentFeeling = rootFeeling;
+
+            var graphics = e.Graphics;
+            var center = new Point(feelingWheelPanel.Width / 2, feelingWheelPanel.Height / 2);
+            var radius = Math.Min(feelingWheelPanel.Width, feelingWheelPanel.Height) / 2 - 10;
+
+            // Get the number of children
+            var feelings = currentFeeling.Children;
+            int count = feelings.Count;
+            if (count == 0) return;
+
+            // Calculate angles
+            float anglePerSegment = 360f / count;
+            float startAngle = 0;
+
+            // Draw each segment
+            for (int i = 0; i < count; i++)
+            {
+                var brush = new SolidBrush(GetColorForIndex(i));
+                var sweepAngle = anglePerSegment;
+
+                // Draw the segment
+                graphics.FillPie(brush, center.X - radius, center.Y - radius, radius * 2, radius * 2, startAngle, sweepAngle);
+
+                // Draw the text
+                var midAngle = startAngle + sweepAngle / 2;
+                var textPoint = GetPointOnCircle(center, radius / 2, midAngle);
+                var feelingName = feelings[i].Name;
+                var textSize = graphics.MeasureString(feelingName, this.Font);
+                graphics.DrawString(feelingName, this.Font, Brushes.Black, textPoint.X - textSize.Width / 2, textPoint.Y - textSize.Height / 2);
+
+                startAngle += sweepAngle;
+            }
+        }
+
+        // Helper to get a color for each segment
+        private Color GetColorForIndex(int index)
+        {
+            var colors = new[] { Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Purple };
+            return colors[index % colors.Length];
+        }
+
+        // Helper to calculate a point on the circle
+        private PointF GetPointOnCircle(Point center, float radius, float angleInDegrees)
+        {
+            float angleInRadians = angleInDegrees * (float)Math.PI / 180f;
+            float x = center.X + radius * (float)Math.Cos(angleInRadians);
+            float y = center.Y + radius * (float)Math.Sin(angleInRadians);
+            return new PointF(x, y);
+        }
+
+        private void FeelingWheelPanel_MouseClick(object sender, MouseEventArgs e)
+        {
+            var center = new Point(feelingWheelPanel.Width / 2, feelingWheelPanel.Height / 2);
+            var radius = Math.Min(feelingWheelPanel.Width, feelingWheelPanel.Height) / 2 - 10;
+
+            // Calculate the angle of the click
+            float dx = e.X - center.X;
+            float dy = e.Y - center.Y;
+            float distance = (float)Math.Sqrt(dx * dx + dy * dy);
+
+            if (distance > radius) return; // Click is outside the wheel
+
+            float angle = (float)(Math.Atan2(dy, dx) * 180 / Math.PI);
+            if (angle < 0) angle += 360;
+
+            // Determine which segment was clicked
+            var feelings = currentFeeling.Children;
+            int count = feelings.Count;
+            float anglePerSegment = 360f / count;
+
+            int clickedIndex = (int)(angle / anglePerSegment);
+            if (clickedIndex >= 0 && clickedIndex < count)
+            {
+                // Update the current feeling and redraw
+                currentFeeling = feelings[clickedIndex];
+                feelingWheelPanel.Invalidate(); // Redraw the panel
+            }
+        }
+
         private void IPLabel_Click(object sender, EventArgs e)
         {
 
@@ -138,6 +347,11 @@ namespace RuRu_Comms
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
         {
 
         }
