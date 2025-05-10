@@ -41,6 +41,8 @@
             this.txtLog = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.prettyText = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -127,6 +129,8 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 103);
             this.tabControl1.Name = "tabControl1";
@@ -142,7 +146,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(453, 379);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Fancy";
+            this.tabPage1.Text = "Nerdy";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // txtLog
@@ -178,6 +182,26 @@
             this.prettyText.Size = new System.Drawing.Size(447, 373);
             this.prettyText.TabIndex = 5;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(453, 379);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Feeling Wheel";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(453, 379);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Fun?... Other stuff tbd";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
@@ -209,6 +233,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.TextBox prettyText;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
     }
 }
 
