@@ -18,3 +18,4 @@ C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.csproj.GenerateResour
 C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.csproj.CoreCompileInputs.cache
 C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.exe
 C:\Users\rutle\Source\Repos\RuRuComms\obj\Debug\RuRu Comms.pdb
+C:\Users\rutle\source\repos\RuRuComms\obj\Debug\RuRu_Comms.MessageWindowForm.resources

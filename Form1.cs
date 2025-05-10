@@ -101,9 +101,17 @@ namespace RuRu_Comms
 
         private void btnSendMessage_Click(object sender, EventArgs e)
         {
-            string message = "Hello from client!";
-            SendMessage(message);
-            AppendLog($"Sent: {message}");
+            //string message = "Hello from client!";
+            //SendMessage(message);
+            using (var inputForm = new MessageWindowForm())
+            {
+                if (inputForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    string message = inputForm.Message;
+                    SendMessage(message);
+                    AppendLog($"Sent: {message}");
+                }
+            }
         }
 
         private void AppendLog(string message)
