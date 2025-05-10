@@ -15,12 +15,12 @@
       "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|c:\\users\\rutle\\source\\repos\\rurucomms\\messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|c:\\users\\rutle\\source\\repos\\rurucomms\\messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|c:\\users\\rutle\\source\\repos\\rurucomms\\messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +38,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MessageWindowForm.cs",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\MessageWindowForm.cs",
               "RelativeDocumentMoniker": "MessageWindowForm.cs",
@@ -51,7 +51,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "MessageWindowForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\MessageWindowForm.cs",
               "RelativeDocumentMoniker": "MessageWindowForm.cs",
@@ -67,9 +67,9 @@
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs*",
-              "RelativeToolTip": "Form1.cs*",
-              "ViewState": "AgIAAC4BAAAAAAAAAAAmwGIBAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AgIAAPsAAAAAAAAAAAAmwA0BAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T22:09:26.115Z",
               "EditorCaption": ""
@@ -82,7 +82,7 @@
               "RelativeDocumentMoniker": "Form1.Designer.cs",
               "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AgIAAJ8AAAAAAAAAAAAYwLUAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAJwAAAAAAAAAAAAQwLEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-10T03:20:34.608Z",
               "EditorCaption": ""
@@ -93,8 +93,8 @@
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs [Design]*",
-              "RelativeToolTip": "Form1.cs [Design]*",
+              "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T22:08:25.226Z",
               "EditorCaption": " [Design]"

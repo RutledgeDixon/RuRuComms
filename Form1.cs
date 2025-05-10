@@ -24,7 +24,12 @@ using Newtonsoft.Json;
 //      update colors on feeling wheel
 //      add animation to feeling wheel? like mouse-over
 //      add reset button to feeling wheel
-//      add code for sending feeling wheel information - like BxF10-BxF99 or something
+//      add code for sending feeling wheel information - like BxFsad or something???
+//      fix text on feeling wheel
+//      add end to color wheel function
+
+//      for server: add a variable that keeps current feeling for each client, sends it upon
+//                  connection to other clients, updated by feeling wheel
 
 namespace RuRu_Comms
 {
@@ -64,6 +69,9 @@ namespace RuRu_Comms
 
             //testing feeling data
             //printFeelingsTree();
+
+            //initialize feelingWheel
+            feelingWheelPanel.Invalidate();
         }
 
         // Connect to the server
@@ -257,6 +265,9 @@ namespace RuRu_Comms
 
         private void FeelingWheelPanel_Paint(object sender, PaintEventArgs e)
         {
+            Console.WriteLine("FeelingWheelPanel_Paint called");
+            AppendLog("FeelingWheelPanel_Paint called");
+
             if (currentFeeling == null) currentFeeling = rootFeeling;
 
             var graphics = e.Graphics;
@@ -276,27 +287,56 @@ namespace RuRu_Comms
             for (int i = 0; i < count; i++)
             {
                 var brush = new SolidBrush(GetColorForIndex(i));
-                var sweepAngle = anglePerSegment;
+                //var sweepAngle = anglePerSegment;
 
                 // Draw the segment
-                graphics.FillPie(brush, center.X - radius, center.Y - radius, radius * 2, radius * 2, startAngle, sweepAngle);
+                graphics.FillPie(brush, center.X - radius, center.Y - radius, radius * 2, radius * 2, startAngle, anglePerSegment);
 
                 // Draw the text
-                var midAngle = startAngle + sweepAngle / 2;
+                var midAngle = startAngle + anglePerSegment / 2;
                 var textPoint = GetPointOnCircle(center, radius / 2, midAngle);
                 var feelingName = feelings[i].Name;
                 var textSize = graphics.MeasureString(feelingName, this.Font);
-                graphics.DrawString(feelingName, this.Font, Brushes.Black, textPoint.X - textSize.Width / 2, textPoint.Y - textSize.Height / 2);
-
-                startAngle += sweepAngle;
+                DrawRotatedString(graphics, feelingName, this.Font, Brushes.Black, textPoint, midAngle);
+                //startAngle += sweepAngle;
+                startAngle += anglePerSegment;
             }
+        }
+
+        private void DrawRotatedString(Graphics graphics, string text, Font font, Brush brush, PointF point, float angle)
+        {
+            var textSize = graphics.MeasureString(text, font);
+
+            // Save the current state of the Graphics object
+            var state = graphics.Save();
+
+            // Move the origin to the point where the text will be drawn
+            graphics.TranslateTransform(point.X, point.Y);
+
+            // Rotate the Graphics object
+            //  if the object would be more upside down than right side up (very specific I know), flip it upside down
+            if (angle >= 90 && angle < 270)
+            {
+                angle += 180;
+            }
+            graphics.RotateTransform(angle);
+
+            //offset text so it is centered
+            float offX = -textSize.Width / 2;
+            float offY = -textSize.Height / 2;
+
+            // Draw the string at the new origin
+            graphics.DrawString(text, font, brush, offX, offY);
+
+            // Restore the original state of the Graphics object
+            graphics.Restore(state);
         }
 
         // Helper to get a color for each segment
         private Color GetColorForIndex(int index)
         {
-            var colors = new[] { Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Orange, Color.Purple };
-            return colors[index % colors.Length];
+            var colors = new[] {"#BF553E", "#3E77BF", "#3EBF5D", "#E7E432", "#BF8A3E", "#983EBF" };
+            return ColorTranslator.FromHtml(colors[index % colors.Length]);
         }
 
         // Helper to calculate a point on the circle
@@ -354,6 +394,12 @@ namespace RuRu_Comms
         private void tabPage3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void resetWheel_Click(object sender, EventArgs e)
+        {
+            //currentFeeling = null;
+            //feelingWheelPanel.Invalidate(); // Redraw the panel
         }
     }
 }
