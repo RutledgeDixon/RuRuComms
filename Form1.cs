@@ -112,6 +112,9 @@ namespace RuRu_Comms
             {
                 byte[] data = Encoding.UTF8.GetBytes(message);
                 _networkStream.Write(data, 0, data.Length);
+
+                AppendLog("Sent: " + message);
+                printPretty(message, 1);
             }
         }
 
@@ -130,19 +133,113 @@ namespace RuRu_Comms
                     string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                     AppendLog($"Received: {message}");
                     //display the message on the pretty tab
-                    printPretty(message);
+                    //use invoke to run this on the main thread since receiveMessages us on a different thread
+                    Invoke(new Action(() =>
+                    {
+                        printPretty(message, 0);
+                    }));
                 }
-                catch
+                catch (Exception ex)
                 {
-                    AppendLog("Disconnected from server.");
+                    AppendLog($"Error receiving message: {ex.Message}");
                     break;
                 }
             }
+            AppendLog("Disconnected from server.");
         }
 
-        private void printPretty(string message)
+        //this message displays the message correctly in the neat style tab
+        //  if it is a normal message, it prints it normally
+        //  if it is a coded message, it deciphers it and does what it commands
+        //  sendOrReceive is 0 for received messages and 1 for sent messages
+        private void printPretty(string message, int sendOrReceive)
         {
             //idk what to do here yet - how much is print and how much is graphical?
+            if (string.IsNullOrWhiteSpace(message))
+            {
+                AppendLog("Error: Received an empty or null message.");
+                return;
+            }
+
+            if (isCodedMessage(message))
+            {
+                if (isFeelingMessage(message))
+                {
+                    string feelingName = message.Substring("BxF_FEEL_".Length);
+                    Feeling f = FindFeelingByName(rootFeeling, feelingName);
+
+                    if (f != null)
+                    {
+                        updateFeelingOnNeatStyle(f, sendOrReceive);
+                    }
+                    else
+                    {
+                        AppendLog($"Error: Feeling '{feelingName}' not found in the tree.");
+                    }
+                }
+                else
+                {
+                    AppendLog($"Unhandled coded message: {message}");
+                }
+            }
+            else
+            {
+                printReceivedText(message, sendOrReceive);
+
+                //add a space on the other side for readability
+                printReceivedText("\n", Math.Abs(sendOrReceive-1));
+            }
+        }
+
+
+        //these functions are code-smelly bc it's sort of redundant but I like how it makes the printPretty function look
+        private bool isCodedMessage(string message)
+        {
+            // Check if the message starts with "BxF"
+            return message.StartsWith("BxF");
+        }
+
+        private bool isFeelingMessage(string message)
+        {
+            // Check if the message starts with "BxF_FEEL_"
+            return message.StartsWith("BxF_FEEL_");
+        }
+
+        //simply print a line of string into the right text box
+        private void printReceivedText(string message, int box)
+        {
+            if(box == 0)
+            {
+                displayMesg0.Text += message + Environment.NewLine;
+            }
+            else if(box == 1)
+            {
+                displayMesg1.Text += message + Environment.NewLine;
+            }
+            else
+            {
+                //this is unnecessary because the error is dealt with up the chain but I still want it
+                AppendLog($"Error: box number not valid for printing text: {box}");
+            }
+        }
+
+        private Feeling FindFeelingByName(Feeling root, string name)
+        {
+            if (root.Name.Equals(name, StringComparison.OrdinalIgnoreCase))
+            {
+                return root;
+            }
+
+            foreach (var child in root.Children)
+            {
+                var result = FindFeelingByName(child, name);
+                if (result != null)
+                {
+                    return result;
+                }
+            }
+
+            return null; // Return null if no matching feeling is found
         }
 
         private void btnConnectToServer_Click(object sender, EventArgs e)
@@ -169,7 +266,6 @@ namespace RuRu_Comms
                 {
                     string message = inputForm.Message;
                     SendMessage(message);
-                    AppendLog($"Sent: {message}");
                 }
             }
         }
@@ -401,9 +497,6 @@ namespace RuRu_Comms
                 //update tab name with the current feeling
                 //tabPage3.Text = capitalFeeling;
 
-                //update neat style with current feeling
-                updateFeelingOnNeatStyle(currentFeeling);
-
                 //reset panel and redraw
                 currentFeeling = null;
                 feelingWheelPanel.Invalidate(); // Redraw the panel
@@ -417,10 +510,25 @@ namespace RuRu_Comms
             AppendLog($"Sent feeling: {message}");
         }
 
-        private void updateFeelingOnNeatStyle(Feeling feeling)
+        // sendOrReceive: 0 is receive, 1 is send
+        private void updateFeelingOnNeatStyle(Feeling feeling, int sendOrReceive)
         {
-            string capitalFeeling = currentFeeling.Name.Substring(0, 1).ToUpper() + currentFeeling.Name.Substring(1, currentFeeling.Name.Length - 1);
-            displayFeelingButton1.Text = capitalFeeling;
+            //update the feeling above the right person on the neat style tab
+            string capitalFeeling = feeling.Name.Substring(0, 1).ToUpper() + feeling.Name.Substring(1, feeling.Name.Length - 1);
+            if(sendOrReceive == 0)
+            {
+                //displayMesg0.Text = capitalFeeling;
+                displayFeelingButton0.Text = capitalFeeling;
+            }
+            else if (sendOrReceive == 1)
+            {
+                //displayMesg1.Text = capitalFeeling;
+                displayFeelingButton1.Text = capitalFeeling;
+            }
+            else
+            {
+                AppendLog($"Error: sendOrReceive value not valid: {sendOrReceive}");
+            }
             Color feelColor = Color.White;
 
             //determine the ultimate grandparent of the feeling and change color accordingly
@@ -455,9 +563,21 @@ namespace RuRu_Comms
                 AppendLog("Error: feeling ancestor not read correctly");
             }
 
-            //update button and text box
-            displayFeelingButton1.BackColor = feelColor;
-            displayMesg1.BackColor = feelColor;
+            //update the background color
+            if (sendOrReceive == 0)
+            {
+                displayMesg0.BackColor = feelColor;
+                displayFeelingButton0.BackColor = feelColor;
+            }
+            else if (sendOrReceive == 1)
+            {
+                displayMesg1.BackColor = feelColor;
+                displayFeelingButton1.BackColor = feelColor;
+            }
+            else
+            {
+                AppendLog($"Error: sendOrReceive value not valid: {sendOrReceive}");
+            }
         }
 
         private void IPLabel_Click(object sender, EventArgs e)
