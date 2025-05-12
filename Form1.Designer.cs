@@ -247,10 +247,10 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.feelingWheelPanel);
-            this.tabPage3.Location = new System.Drawing.Point(4, 41);
+            this.tabPage3.Location = new System.Drawing.Point(4, 38);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(576, 370);
+            this.tabPage3.Size = new System.Drawing.Size(589, 407);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Feeling Wheel";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -262,17 +262,18 @@
             this.feelingWheelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.feelingWheelPanel.Location = new System.Drawing.Point(3, 3);
             this.feelingWheelPanel.Name = "feelingWheelPanel";
-            this.feelingWheelPanel.Size = new System.Drawing.Size(570, 364);
+            this.feelingWheelPanel.Size = new System.Drawing.Size(583, 401);
             this.feelingWheelPanel.TabIndex = 0;
             this.feelingWheelPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FeelingWheelPanel_Paint);
             this.feelingWheelPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseClick);
+            this.feelingWheelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseMove);
             // 
             // tabPage4
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 41);
+            this.tabPage4.Location = new System.Drawing.Point(4, 38);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(576, 370);
+            this.tabPage4.Size = new System.Drawing.Size(589, 407);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Fun?... tbd";
             this.tabPage4.UseVisualStyleBackColor = true;

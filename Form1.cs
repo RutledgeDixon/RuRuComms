@@ -22,7 +22,6 @@ using Newtonsoft.Json;
 //      and its children will populate the wheel, until you get to the end of the wheel
 
 //TODO:
-//      update colors that feeling wheel displays on neat style
 //      add animation to feeling wheel? like mouse-over
 
 //      for server: add a variable that keeps current feeling for each client, sends it upon
@@ -150,9 +149,13 @@ namespace RuRu_Comms
         {
             IPAddress = IPText.Text.Trim();
             //I should add a try-catch here to check if the IP address is valid
-            if (!IPAddress.Equals("Error"))
+            if (!IPAddress.Equals("Error") && !string.IsNullOrWhiteSpace(IPAddress))
             {
                 ConnectToServer(IPAddress, DiscoveryPort);
+            }
+            else
+            {
+                AppendLog("Please enter a valid IP address.");
             }
         }
 
@@ -476,5 +479,9 @@ namespace RuRu_Comms
 
         }
 
+        private void FeelingWheelPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }
