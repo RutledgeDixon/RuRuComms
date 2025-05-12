@@ -35,8 +35,8 @@
             this.sendButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
             this.buttonLayout = new System.Windows.Forms.TableLayoutPanel();
-            this.missYouButton = new System.Windows.Forms.Button();
             this.loveYouButton = new System.Windows.Forms.Button();
+            this.missYouButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.buttonLayout.SuspendLayout();
@@ -88,6 +88,7 @@
             this.msgBox.Name = "msgBox";
             this.msgBox.Size = new System.Drawing.Size(245, 35);
             this.msgBox.TabIndex = 1;
+            this.msgBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.msgBox_KeyDown);
             // 
             // sendButton
             // 
@@ -131,29 +132,29 @@
             this.buttonLayout.Size = new System.Drawing.Size(630, 291);
             this.buttonLayout.TabIndex = 1;
             // 
-            // missYouButton
-            // 
-            this.missYouButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.missYouButton.Location = new System.Drawing.Point(7, 7);
-            this.missYouButton.Margin = new System.Windows.Forms.Padding(7);
-            this.missYouButton.Name = "missYouButton";
-            this.missYouButton.Size = new System.Drawing.Size(196, 83);
-            this.missYouButton.TabIndex = 0;
-            this.missYouButton.Text = "test";
-            this.missYouButton.UseVisualStyleBackColor = true;
-            this.missYouButton.Click += new System.EventHandler(this.missYouButton_Click);
-            // 
             // loveYouButton
             // 
             this.loveYouButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.loveYouButton.Location = new System.Drawing.Point(217, 7);
             this.loveYouButton.Margin = new System.Windows.Forms.Padding(7);
             this.loveYouButton.Name = "loveYouButton";
-            this.loveYouButton.Size = new System.Drawing.Size(196, 83);
+            this.loveYouButton.Size = new System.Drawing.Size(196, 82);
             this.loveYouButton.TabIndex = 1;
             this.loveYouButton.Text = "test";
             this.loveYouButton.UseVisualStyleBackColor = true;
             this.loveYouButton.Click += new System.EventHandler(this.loveYouButton_Click);
+            // 
+            // missYouButton
+            // 
+            this.missYouButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.missYouButton.Location = new System.Drawing.Point(7, 7);
+            this.missYouButton.Margin = new System.Windows.Forms.Padding(7);
+            this.missYouButton.Name = "missYouButton";
+            this.missYouButton.Size = new System.Drawing.Size(196, 82);
+            this.missYouButton.TabIndex = 0;
+            this.missYouButton.Text = "test";
+            this.missYouButton.UseVisualStyleBackColor = true;
+            this.missYouButton.Click += new System.EventHandler(this.missYouButton_Click);
             // 
             // MessageWindowForm
             // 

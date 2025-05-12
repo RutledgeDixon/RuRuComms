@@ -13,19 +13,28 @@ using System.Threading;
 using Newtonsoft.Json;
 
 //RuRu Comms works with a simple TCP server, which takes a message from a client and sends it to all other clients
-//NOTE: This program is designed for end users who do not have knowledge of networking
-//Code for translating messages is "BxF", which in decimal is 11x15 or November 15th
-//Code for feelings is "BxF_FEEL_"
 
-//NOTE: Feeling wheel exists in data form as Feeling class with root node rootFeeling
-//      Need to add functionality to feeling wheel tab, a wheel of feelings, select one
-//      and its children will populate the wheel, until you get to the end of the wheel
+/*      NOTES:
+ *      This program is designed for end users who do not have knowledge of networking
+ *      Feeling wheel exists in data form as Feeling class with root node rootFeeling
+ *      Messages on neat style tab are staggered by one line on each side, but a longer message will mess this up
+ *      
+ *      Codes:
+ *          Basic: "BxF"
+ *          Simple mesg: "BxFxx"
+ *          Feeling: "BxF_FEEL_"
+ *          Server: "BxF_SERVER_"
+ */
 
-//TODO:
-//      add animation to feeling wheel? like mouse-over
+/*    TODO:
+      add animation to feeling wheel? like mouse-over
+      add confirmation for user that the feeling was updated on feeling wheel tab
+      neat style tab has to be tested to ensure the messages on each side are staggered correctly
 
-//      for server: add a variable that keeps current feeling for each client, sends it upon
-//                  connection to other clients, updated by feeling wheel
+      for server: add a variable that keeps current feeling for each client, sends it upon
+                  connection to other clients, updated by feeling wheel
+                  add a buffer that keeps all incoming messages (up to 100 messages maybe? and sends them upon connection of another client)
+*/
 
 namespace RuRu_Comms
 {
@@ -35,7 +44,7 @@ namespace RuRu_Comms
         private string IPAddress = "Error";
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
-        private const string IP_PLACEHOLDER = "Magic Number...";
+        private const string IP_PLACEHOLDER = "Magic #...";
         private Font wheelFont = new Font("Arial", 12, FontStyle.Bold);
 
         //feelings for feelings wheel
@@ -116,6 +125,11 @@ namespace RuRu_Comms
                 AppendLog("Sent: " + message);
                 printPretty(message, 1);
             }
+            else
+            {
+                AppendLog("Error sending message: not connected to server");
+            }
+            
         }
 
         // Receive messages from the server
@@ -161,9 +175,9 @@ namespace RuRu_Comms
                 return;
             }
 
-            if (isCodedMessage(message))
+            if (message.StartsWith("BxF"))
             {
-                if (isFeelingMessage(message))
+                if (message.StartsWith("BxF_FEEL_"))
                 {
                     string feelingName = message.Substring("BxF_FEEL_".Length);
                     Feeling f = FindFeelingByName(rootFeeling, feelingName);
@@ -179,31 +193,19 @@ namespace RuRu_Comms
                 }
                 else
                 {
+                    //Right now this is where BxFxx and BxF_SERVER_ messages go, they aren't used
                     AppendLog($"Unhandled coded message: {message}");
                 }
             }
             else
             {
+                //print the message
                 printReceivedText(message, sendOrReceive);
 
-                //add a space on the other side for readability
-                printReceivedText("\n", Math.Abs(sendOrReceive-1));
+                printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
             }
         }
 
-
-        //these functions are code-smelly bc it's sort of redundant but I like how it makes the printPretty function look
-        private bool isCodedMessage(string message)
-        {
-            // Check if the message starts with "BxF"
-            return message.StartsWith("BxF");
-        }
-
-        private bool isFeelingMessage(string message)
-        {
-            // Check if the message starts with "BxF_FEEL_"
-            return message.StartsWith("BxF_FEEL_");
-        }
 
         //simply print a line of string into the right text box
         private void printReceivedText(string message, int box)
@@ -600,6 +602,16 @@ namespace RuRu_Comms
         }
 
         private void FeelingWheelPanel_MouseMove(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadIP_Click(object sender, EventArgs e)
         {
 
         }

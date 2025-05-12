@@ -48,5 +48,17 @@ namespace RuRu_Comms
             msgBox.Text = "BxF01";
             sendButton_Click(sender, e);
         }
+
+        private void msgBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.Enter)
+            {
+                sendButton_Click(sender, e);
+            }
+            else if (e.KeyValue == (char)Keys.Escape)
+            {
+                cancelButton_Click(sender, e);
+            }
+        }
     }
 }
