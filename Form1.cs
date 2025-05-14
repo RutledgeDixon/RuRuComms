@@ -45,6 +45,7 @@ namespace RuRu_Comms
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
         private const string IP_PLACEHOLDER = "Magic #...";
+        private int newNotifications = 0; //number of new notifications on the neat style tab
         private Font wheelFont = new Font("Arial", 12, FontStyle.Bold);
 
         //feelings for feelings wheel
@@ -82,6 +83,10 @@ namespace RuRu_Comms
 
             //initialize feelingWheel
             feelingWheelPanel.Invalidate();
+
+            //set tab to neat style (messages) tab
+            tabControl1.SelectedTab = tabPage2;
+            tabPage2.Text = "Messages";
         }
 
         // Connect to the server
@@ -203,7 +208,18 @@ namespace RuRu_Comms
                 printReceivedText(message, sendOrReceive);
 
                 printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
+
+                //add a notification to the neat style tab
+                //  add sendOrReceive == 1 for testing
+                if (sendOrReceive == 0 || sendOrReceive == 1)
+                {
+                    newNotifications++;
+                }
+                udpateNotificationLabel();
             }
+
+            
+
         }
 
 
@@ -606,14 +622,87 @@ namespace RuRu_Comms
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void loadIP_Click_1(object sender, EventArgs e)
+        {
+            //read the json file
+            string jsonContent = System.IO.File.ReadAllText("ip.json");
+            //deserialize it into a string
+            string ip = JsonConvert.DeserializeObject<string>(jsonContent);
+            //load this ip into the text box
+            RemovePlaceholder(IPText, IP_PLACEHOLDER);
+            IPText.Text = ip;
+            //append to the log
+            AppendLog($"Loaded IP address from file: {ip}");
+        }
+
+        private void saveIP_Click(object sender, EventArgs e)
+        {
+            //create a JSON form of the IP address
+            string ipJson = JsonConvert.SerializeObject(IPText.Text.Trim(), Formatting.Indented);
+
+            //check if the file is already created
+            if (!System.IO.File.Exists("ip.json"))
+            {
+                //save it to a file
+                System.IO.File.WriteAllText("ip.json", ipJson);
+                //append to the log
+                AppendLog($"Saved IP address to file: {IPAddress}");
+            }
+            else
+            {
+                //read current saved IP
+                //  read the json file
+                string jsonContent = System.IO.File.ReadAllText("ip.json");
+                //  deserialize it into a string
+                string ip = JsonConvert.DeserializeObject<string>(jsonContent);
+                //If the IP address is the same, do nothing
+                if (ip.Equals(IPText.Text.Trim()))
+                {
+                    return;
+                }
+                //add a message popup to ask for confirmation
+                DialogResult result = MessageBox.Show($"Current number saved: {ip}\nDo you want to replace with {IPText.Text.Trim()}?", "Save new Number?", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    //save it to a file
+                    System.IO.File.WriteAllText("ip.json", ipJson);
+                    //append to the log
+                    AppendLog($"Saved IP address to file: {IPText.Text.Trim()}");
+                }
+                else
+                {
+                    AppendLog($"IP address kept: {ip}");
+                    return;
+                }
+            }
+        }
+
+        private void udpateNotificationLabel()
+        {
+            //change text on neat style tab to include number of notifications
+            if (newNotifications > 0)
+            {
+                tabPage2.Text = $"Messages ({newNotifications})";
+            }
+            else
+            {
+                tabPage2.Text = "Messages";
+            }
+        }
+
+        private void IPText_TextChanged_1(object sender, EventArgs e)
         {
 
         }
 
-        private void loadIP_Click(object sender, EventArgs e)
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-
+            if (tabControl1.SelectedTab == tabPage2)
+            {
+                newNotifications = 0;
+                udpateNotificationLabel();
+            }
         }
     }
 }
