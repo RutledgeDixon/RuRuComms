@@ -7,19 +7,19 @@ The server only allows 2 connected clients at a time.
 
 If you are not sure how to install:
 
-  Click the green code button
+  1. Click the green code button
   
-  Download ZIP
+  2. Download ZIP
   
-  Put it somewhere you will keep it
+  3. Put it somewhere you will keep it
   
-  Go to that ZIP, right-click, and extract all.
+  4. Go to that ZIP, right-click, and extract all.
   
-  Go to that folder you just made from extracting the ZIP, go to the folders bin/Debug
+  5. Go to that folder you just made from extracting the ZIP, go to the folders bin/Debug
   
-  Right-click the .exe (should be named RuRu Comms), right-click, show more options, and create a shortcut
+  6. Right-click the .exe (should be named RuRu Comms), right-click, show more options, and create a shortcut
   
-  Move that shortcut to your desktop
+  7. Move that shortcut to your desktop
   
-  When you want to run the application, double-click the shortcut
+  8. When you want to run the application, double-click the shortcut
   
