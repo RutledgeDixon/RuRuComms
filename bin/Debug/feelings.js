@@ -10,7 +10,7 @@
     },
     "insecure": {
       "inadequate": {},
-      "inferrior": {}
+      "inferior": {}
     },
     "nervous": {
       "anxious": {},
@@ -52,7 +52,7 @@
       "depressed": {},
       "sorrow": {}
     },
-    "dissapointed": {
+    "disappointed": {
       "frustrated": {},
       "agitated": {}
     },
@@ -131,7 +131,7 @@
       "dismayed": {}
     },
     "confused": {
-      "disillusion": {},
+      "disillusioned": {},
       "perplexed": {}
     },
     "amazed": {
@@ -139,7 +139,7 @@
       "awe_struck": {}
     },
     "overcome": {
-      "speachless": {},
+      "speechless": {},
       "astounded": {}
     },
     "moved": {

@@ -87,21 +87,43 @@ namespace RuRu_Comms
             //set tab to neat style (messages) tab
             tabControl1.SelectedTab = tabPage2;
             tabPage2.Text = "Messages";
+            tabPage1.BackColor = Color.DarkSeaGreen;
+            tabPage2.BackColor = Color.DarkSeaGreen;
+            tabPage3.BackColor = Color.DarkSeaGreen;
+
+            //nerd tab starts hidden
+            tabControl1.TabPages.Remove(tabPage1);
         }
 
         // Connect to the server
         private async void ConnectToServer(string serverIp, int port)
         {
+            //first disconnect if already connected
+            if (_tcpClient != null && _tcpClient.Connected)
+            {
+                _networkStream.Close();
+                _tcpClient.Close();
+                AppendLog("Disconnected from server.");
+            }
+
             AppendLog($"Connecting to server {serverIp} on port {port}");
             try
             {
                 _tcpClient = new TcpClient();
                 var connectTask = _tcpClient.ConnectAsync(serverIp, port);
+
+                //change button to connecting...
+                btnConnectToServer.Text = "Connecting...";
+                btnConnectToServer.BackColor = Color.OrangeRed;
+
                 // Adding an explicit delay (because default TCP delay is too long)
                 if (await Task.WhenAny(connectTask, Task.Delay(3000)) == connectTask)
                 {
                     _networkStream = _tcpClient.GetStream();
                     AppendLog("Connected to server!");
+                    //hide the connect button
+                    btnConnectToServer.Text = "Connected!";
+                    btnConnectToServer.BackColor = Color.DarkSeaGreen;
 
                     // Start a thread to listen for messages from the server
                     Thread receiveThread = new Thread(ReceiveMessages);
@@ -111,11 +133,15 @@ namespace RuRu_Comms
                 else
                 {
                     AppendLog("Connection timed out.");
+                    btnConnectToServer.Text = "Connect!";
+                    btnConnectToServer.BackColor = Color.White;
                 }
             }
             catch (Exception ex)
             {
                 AppendLog($"Error connecting to server: {ex.Message}");
+                btnConnectToServer.Text = "Connect!";
+                btnConnectToServer.BackColor = Color.White;
             }
         }
 
@@ -165,6 +191,12 @@ namespace RuRu_Comms
                 }
             }
             AppendLog("Disconnected from server.");
+            //show connection button
+            Invoke(new Action(() =>
+            {
+                btnConnectToServer.Text = "Connect!";
+                btnConnectToServer.BackColor = Color.White;
+            }));
         }
 
         //this message displays the message correctly in the neat style tab
@@ -193,7 +225,8 @@ namespace RuRu_Comms
                     }
                     else
                     {
-                        AppendLog($"Error: Feeling '{feelingName}' not found in the tree.");
+                        AppendLog($"Feeling '{feelingName}' not found in the tree. Updating manually");
+                        updateFeelingOnNeatStyle_Manual_(feelingName, sendOrReceive);
                     }
                 }
                 else
@@ -210,8 +243,8 @@ namespace RuRu_Comms
                 printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
 
                 //add a notification to the neat style tab
-                //  add sendOrReceive == 1 for testing
-                if (sendOrReceive == 0 || sendOrReceive == 1)
+                //  add || sendOrReceive == 1 for testing
+                if (sendOrReceive == 0 && tabControl1.SelectedTab == tabPage2)
                 {
                     newNotifications++;
                 }
@@ -263,6 +296,20 @@ namespace RuRu_Comms
         private void btnConnectToServer_Click(object sender, EventArgs e)
         {
             IPAddress = IPText.Text.Trim();
+
+            // easter egg - if the input is "turtles" then show nerd log
+            if (IPAddress.Equals("turtles", StringComparison.OrdinalIgnoreCase))
+            {
+                tabControl1.TabPages.Insert(0, tabPage1);
+                return;
+            }
+
+            //  if the IP address is empty, set it to the placeholder
+            if (IPAddress.Equals(IP_PLACEHOLDER))
+            {
+                IPAddress = "Error";
+            }
+
             //I should add a try-catch here to check if the IP address is valid
             if (!IPAddress.Equals("Error") && !string.IsNullOrWhiteSpace(IPAddress))
             {
@@ -461,6 +508,7 @@ namespace RuRu_Comms
         }
 
         // Helper to get a color for each segment
+        //  In order: Orange (fear), purple (anger), blue (sadness), red (love), green (joy), yellow (surprise)
         private Color GetColorForIndex(int index)
         {
             var colors = new[] { "#BF8A3E", "#983EBF", "#3E77BF", "#BF553E", "#3EBF5D", "#E7E432" };
@@ -598,6 +646,27 @@ namespace RuRu_Comms
             }
         }
 
+        //updates the feeling with a manually entered feeling that is outside of the tree
+        private void updateFeelingOnNeatStyle_Manual_(string feeling, int sendOrReceive)
+        {
+            Color feelColor = ColorTranslator.FromHtml("#179530");
+
+            if (sendOrReceive == 0)
+            {
+                //displayMesg0.Text = feeling;
+                displayFeelingButton0.Text = feeling;
+                displayFeelingButton0.BackColor = feelColor;
+                displayMesg0.BackColor = feelColor;
+            }
+            else if (sendOrReceive == 1)
+            {
+                //displayMesg1.Text = feeling;
+                displayFeelingButton1.Text = feeling;
+                displayFeelingButton1.BackColor = feelColor;
+                displayMesg1.BackColor = feelColor;
+            }
+        }
+
         private void IPLabel_Click(object sender, EventArgs e)
         {
 
@@ -649,7 +718,7 @@ namespace RuRu_Comms
                 //append to the log
                 AppendLog($"Saved IP address to file: {IPAddress}");
             }
-            else
+            else if (!IPText.Text.Trim().Equals(IP_PLACEHOLDER))
             {
                 //read current saved IP
                 //  read the json file

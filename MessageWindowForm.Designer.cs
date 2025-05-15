@@ -54,7 +54,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(636, 377);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(610, 99);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // flowLayoutPanel1
@@ -66,7 +66,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(630, 74);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(604, 74);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label1
@@ -129,19 +129,21 @@
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.buttonLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.buttonLayout.Size = new System.Drawing.Size(630, 291);
+            this.buttonLayout.Size = new System.Drawing.Size(604, 13);
             this.buttonLayout.TabIndex = 1;
+            this.buttonLayout.Paint += new System.Windows.Forms.PaintEventHandler(this.buttonLayout_Paint);
             // 
             // loveYouButton
             // 
             this.loveYouButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.loveYouButton.Location = new System.Drawing.Point(217, 7);
+            this.loveYouButton.Location = new System.Drawing.Point(208, 7);
             this.loveYouButton.Margin = new System.Windows.Forms.Padding(7);
             this.loveYouButton.Name = "loveYouButton";
-            this.loveYouButton.Size = new System.Drawing.Size(196, 82);
+            this.loveYouButton.Size = new System.Drawing.Size(187, 1);
             this.loveYouButton.TabIndex = 1;
             this.loveYouButton.Text = "test";
             this.loveYouButton.UseVisualStyleBackColor = true;
+            this.loveYouButton.Visible = false;
             this.loveYouButton.Click += new System.EventHandler(this.loveYouButton_Click);
             // 
             // missYouButton
@@ -150,10 +152,11 @@
             this.missYouButton.Location = new System.Drawing.Point(7, 7);
             this.missYouButton.Margin = new System.Windows.Forms.Padding(7);
             this.missYouButton.Name = "missYouButton";
-            this.missYouButton.Size = new System.Drawing.Size(196, 82);
+            this.missYouButton.Size = new System.Drawing.Size(187, 1);
             this.missYouButton.TabIndex = 0;
             this.missYouButton.Text = "test";
             this.missYouButton.UseVisualStyleBackColor = true;
+            this.missYouButton.Visible = false;
             this.missYouButton.Click += new System.EventHandler(this.missYouButton_Click);
             // 
             // MessageWindowForm
@@ -161,7 +164,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(636, 377);
+            this.ClientSize = new System.Drawing.Size(610, 99);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MessageWindowForm";
             this.Text = "MessageWindowForm";

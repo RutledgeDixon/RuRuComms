@@ -60,5 +60,10 @@ namespace RuRu_Comms
                 cancelButton_Click(sender, e);
             }
         }
+
+        private void buttonLayout_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
