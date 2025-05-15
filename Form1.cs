@@ -325,14 +325,14 @@ namespace RuRu_Comms
             {
                 displayMesg0.Text += message + Environment.NewLine;
                 // auto scroll-down the box
-                //displayMesg0.SelectedText = displayMesg0.Text.Length.ToString();
+                displayMesg0.SelectionStart = displayMesg0.Text.Length;
                 displayMesg0.ScrollToCaret();
             }
             else if(box == 1)
             {
                 displayMesg1.Text += message + Environment.NewLine;
                 //auto scroll-down the box
-                //displayMesg1.SelectedText = displayMesg1.Text.Length.ToString();
+                displayMesg1.SelectionStart = displayMesg1.Text.Length;
                 displayMesg1.ScrollToCaret();
             }
             else
