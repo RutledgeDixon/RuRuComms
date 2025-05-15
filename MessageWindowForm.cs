@@ -9,18 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 //Code for translating messages is "BxF", which in decimal is 11x15 or November 15th
-//    BxF is followed by 2 digits, which determine what message to display
-//    BxF00 = "I miss you"
-//    BxF01 = "I love you"
 
 namespace RuRu_Comms
 {
     public partial class MessageWindowForm : Form
     {
-        public string Message { get; private set; }
+        public string Message
+        {
+            get { return msgBox.Text; }
+            set { msgBox.Text = value; }
+        }
+
         public MessageWindowForm()
         {
             InitializeComponent();
+
+            msgBox.Text = Message;
         }
 
         private void sendButton_Click(object sender, EventArgs e)
@@ -62,6 +66,11 @@ namespace RuRu_Comms
         }
 
         private void buttonLayout_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void msgBox_TextChanged(object sender, EventArgs e)
         {
 
         }

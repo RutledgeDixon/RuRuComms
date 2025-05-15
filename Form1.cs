@@ -882,6 +882,10 @@ namespace RuRu_Comms
                 string jsonContent = System.IO.File.ReadAllText("clientId.json");
                 // Deserialize it into a string
                 string id = JsonConvert.DeserializeObject<string>(jsonContent);
+
+                //updateWelcomeLabel
+                welcomeLabel.Text = "Hi, " + id + "!";
+
                 return id;
             }
             else
@@ -896,6 +900,10 @@ namespace RuRu_Comms
                         string clientIdJson = JsonConvert.SerializeObject(id, Formatting.Indented);
                         System.IO.File.WriteAllText("clientId.json", clientIdJson);
                         //return the clientId
+
+                        //updateWelcomeLabel
+                        welcomeLabel.Text = "Hi, " + id + "!";
+
                         return id;
                     }
                 }
@@ -904,6 +912,21 @@ namespace RuRu_Comms
             }
 
             return "Client"; // Default value if no input is provided
+        }
+
+        private void displayFeelingButton0_Click(object sender, EventArgs e)
+        {
+            using(MessageWindowForm messageForm = new MessageWindowForm())
+            {
+                messageForm.Message = "Why are you feeling " + displayFeelingButton0.Text.ToLower() + "?";
+                
+
+                if (messageForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    string message = messageForm.Message;
+                    SendMessage(message);
+                }
+            }
         }
     }
 }

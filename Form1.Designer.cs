@@ -51,6 +51,7 @@
             this.displayFeelingButton1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.feelingWheelPanel = new System.Windows.Forms.Panel();
+            this.welcomeLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -71,7 +72,7 @@
             this.btnConnectToServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnectToServer.Location = new System.Drawing.Point(3, 50);
             this.btnConnectToServer.Name = "btnConnectToServer";
-            this.btnConnectToServer.Size = new System.Drawing.Size(377, 41);
+            this.btnConnectToServer.Size = new System.Drawing.Size(362, 41);
             this.btnConnectToServer.TabIndex = 3;
             this.btnConnectToServer.Text = "Connect!";
             this.btnConnectToServer.UseVisualStyleBackColor = true;
@@ -81,9 +82,9 @@
             // 
             this.btnSendMessage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnSendMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSendMessage.Location = new System.Drawing.Point(386, 50);
+            this.btnSendMessage.Location = new System.Drawing.Point(371, 50);
             this.btnSendMessage.Name = "btnSendMessage";
-            this.btnSendMessage.Size = new System.Drawing.Size(378, 41);
+            this.btnSendMessage.Size = new System.Drawing.Size(362, 41);
             this.btnSendMessage.TabIndex = 4;
             this.btnSendMessage.Text = "Message";
             this.btnSendMessage.UseVisualStyleBackColor = true;
@@ -101,7 +102,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(773, 601);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(742, 579);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // tableLayoutPanel2
@@ -112,13 +113,14 @@
             this.tableLayoutPanel2.Controls.Add(this.btnConnectToServer, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.btnSendMessage, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.splitContainer2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.welcomeLabel, 1, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(767, 94);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(736, 94);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // splitContainer2
@@ -134,8 +136,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tableLayoutPanel4);
-            this.splitContainer2.Size = new System.Drawing.Size(377, 41);
-            this.splitContainer2.SplitterDistance = 125;
+            this.splitContainer2.Size = new System.Drawing.Size(362, 41);
+            this.splitContainer2.SplitterDistance = 120;
             this.splitContainer2.TabIndex = 9;
             // 
             // IPText
@@ -144,7 +146,7 @@
             this.IPText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.IPText.Location = new System.Drawing.Point(0, 0);
             this.IPText.Name = "IPText";
-            this.IPText.Size = new System.Drawing.Size(125, 30);
+            this.IPText.Size = new System.Drawing.Size(120, 30);
             this.IPText.TabIndex = 8;
             this.IPText.TextChanged += new System.EventHandler(this.IPText_TextChanged_1);
             // 
@@ -160,16 +162,16 @@
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(248, 41);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(238, 41);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // saveIP
             // 
             this.saveIP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.saveIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveIP.Location = new System.Drawing.Point(127, 3);
+            this.saveIP.Location = new System.Drawing.Point(122, 3);
             this.saveIP.Name = "saveIP";
-            this.saveIP.Size = new System.Drawing.Size(118, 35);
+            this.saveIP.Size = new System.Drawing.Size(113, 35);
             this.saveIP.TabIndex = 11;
             this.saveIP.Text = "Save #";
             this.saveIP.UseVisualStyleBackColor = true;
@@ -181,7 +183,7 @@
             this.loadIP.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadIP.Location = new System.Drawing.Point(3, 3);
             this.loadIP.Name = "loadIP";
-            this.loadIP.Size = new System.Drawing.Size(118, 35);
+            this.loadIP.Size = new System.Drawing.Size(113, 35);
             this.loadIP.TabIndex = 2;
             this.loadIP.Text = "Load #";
             this.loadIP.UseVisualStyleBackColor = true;
@@ -197,7 +199,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 103);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(767, 495);
+            this.tabControl1.Size = new System.Drawing.Size(736, 473);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
             // 
@@ -229,7 +231,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 38);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(759, 453);
+            this.tabPage2.Size = new System.Drawing.Size(728, 431);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Messages";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -249,19 +251,19 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(753, 447);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(722, 425);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // displayMesg1
             // 
             this.displayMesg1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.displayMesg1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.displayMesg1.Location = new System.Drawing.Point(379, 73);
+            this.displayMesg1.Location = new System.Drawing.Point(364, 73);
             this.displayMesg1.Multiline = true;
             this.displayMesg1.Name = "displayMesg1";
             this.displayMesg1.ReadOnly = true;
             this.displayMesg1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.displayMesg1.Size = new System.Drawing.Size(371, 371);
+            this.displayMesg1.Size = new System.Drawing.Size(355, 349);
             this.displayMesg1.TabIndex = 7;
             // 
             // displayMesg0
@@ -273,7 +275,7 @@
             this.displayMesg0.Name = "displayMesg0";
             this.displayMesg0.ReadOnly = true;
             this.displayMesg0.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.displayMesg0.Size = new System.Drawing.Size(370, 371);
+            this.displayMesg0.Size = new System.Drawing.Size(355, 349);
             this.displayMesg0.TabIndex = 6;
             // 
             // displayFeelingButton0
@@ -282,18 +284,19 @@
             this.displayFeelingButton0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.displayFeelingButton0.Location = new System.Drawing.Point(3, 3);
             this.displayFeelingButton0.Name = "displayFeelingButton0";
-            this.displayFeelingButton0.Size = new System.Drawing.Size(370, 64);
+            this.displayFeelingButton0.Size = new System.Drawing.Size(355, 64);
             this.displayFeelingButton0.TabIndex = 0;
             this.displayFeelingButton0.Text = "You";
             this.displayFeelingButton0.UseVisualStyleBackColor = true;
+            this.displayFeelingButton0.Click += new System.EventHandler(this.displayFeelingButton0_Click);
             // 
             // displayFeelingButton1
             // 
             this.displayFeelingButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.displayFeelingButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.displayFeelingButton1.Location = new System.Drawing.Point(379, 3);
+            this.displayFeelingButton1.Location = new System.Drawing.Point(364, 3);
             this.displayFeelingButton1.Name = "displayFeelingButton1";
-            this.displayFeelingButton1.Size = new System.Drawing.Size(371, 64);
+            this.displayFeelingButton1.Size = new System.Drawing.Size(355, 64);
             this.displayFeelingButton1.TabIndex = 1;
             this.displayFeelingButton1.Text = "Me";
             this.displayFeelingButton1.UseVisualStyleBackColor = true;
@@ -323,16 +326,29 @@
             this.feelingWheelPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseClick);
             this.feelingWheelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseMove);
             // 
+            // welcomeLabel
+            // 
+            this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeLabel.Location = new System.Drawing.Point(371, 0);
+            this.welcomeLabel.Name = "welcomeLabel";
+            this.welcomeLabel.Size = new System.Drawing.Size(362, 47);
+            this.welcomeLabel.TabIndex = 10;
+            this.welcomeLabel.Text = "Welcome";
+            this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Form1
             // 
             this.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.ClientSize = new System.Drawing.Size(773, 601);
+            this.ClientSize = new System.Drawing.Size(742, 579);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
             this.Text = "RuRu Comms v1.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
@@ -369,6 +385,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button saveIP;
         private System.Windows.Forms.Button loadIP;
+        private System.Windows.Forms.Label welcomeLabel;
     }
 }
 
