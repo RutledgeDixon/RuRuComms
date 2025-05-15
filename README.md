@@ -15,9 +15,9 @@ If you are not sure how to install:
   
   4. Go to that ZIP, right-click, and extract all.
   
-  5. Go to that folder you just made from extracting the ZIP, go to the folders bin/Debug
+  5. Go to that folder you just made from extracting the ZIP and double-click it, go to the folders bin/Debug
   
-  6. Right-click the .exe (should be named RuRu Comms), right-click, show more options, and create a shortcut
+  6. Find the .exe (should be named RuRu Comms), right-click, show more options, and create a shortcut
   
   7. Move that shortcut to your desktop
   
