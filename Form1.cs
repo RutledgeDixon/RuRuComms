@@ -44,6 +44,7 @@ namespace RuRu_Comms
         private string IPAddress = "Error";
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
+        private CancellationTokenSource _receiveCancellation;
         private const string IP_PLACEHOLDER = "Magic #...";
         private int newNotifications = 0; //number of new notifications on the neat style tab
         private Font wheelFont = new Font("Arial", 12, FontStyle.Bold);
@@ -68,7 +69,9 @@ namespace RuRu_Comms
         public Form1()
         {
             InitializeComponent();
-
+            // Attach event handlers for user activity on the messages tab
+            //  this is for the notifications functionality
+            AttachUserActivityHandlers(tabPage2);
             //IPText placeholder code
             SetPlaceholder(IPText, IP_PLACEHOLDER);
             IPText.GotFocus += (s, e) => RemovePlaceholder(IPText, IP_PLACEHOLDER);
@@ -85,7 +88,7 @@ namespace RuRu_Comms
             feelingWheelPanel.Invalidate();
 
             //set tab to neat style (messages) tab
-            tabControl1.SelectedTab = tabPage2;
+            tabControl1.SelectTab(0);
             tabPage2.Text = "Messages";
             tabPage1.BackColor = Color.DarkSeaGreen;
             tabPage2.BackColor = Color.DarkSeaGreen;
@@ -98,12 +101,32 @@ namespace RuRu_Comms
         // Connect to the server
         private async void ConnectToServer(string serverIp, int port)
         {
+            // Cancel previous receive thread if running
+            if (_receiveCancellation != null)
+            {
+                _receiveCancellation.Cancel();
+                _receiveCancellation = null;
+            }
+
             //first disconnect if already connected
             if (_tcpClient != null && _tcpClient.Connected)
             {
-                _networkStream.Close();
-                _tcpClient.Close();
+                try
+                {
+                    _networkStream?.Close();
+                    _tcpClient.Close();
+                }
+                catch (Exception ex)
+                {
+                    AppendLog($"Error during disconnect: {ex.Message}");
+                }
+                finally
+                {
+                    _networkStream = null;
+                    _tcpClient = null;
+                }
                 AppendLog("Disconnected from server.");
+                // Optional: await Task.Delay(100); // Give the OS a moment to release the socket
             }
 
             AppendLog($"Connecting to server {serverIp} on port {port}");
@@ -121,18 +144,22 @@ namespace RuRu_Comms
                 {
                     _networkStream = _tcpClient.GetStream();
                     AppendLog("Connected to server!");
-                    //hide the connect button
+
+                    //change button to connected
                     btnConnectToServer.Text = "Connected!";
                     btnConnectToServer.BackColor = Color.DarkSeaGreen;
 
                     // Start a thread to listen for messages from the server
-                    Thread receiveThread = new Thread(ReceiveMessages);
+                    _receiveCancellation = new CancellationTokenSource();
+                    Thread receiveThread = new Thread(() => ReceiveMessages(_receiveCancellation.Token));
                     receiveThread.IsBackground = true;
                     receiveThread.Start();
                 }
                 else
                 {
                     AppendLog("Connection timed out.");
+
+                    //change button back to connect
                     btnConnectToServer.Text = "Connect!";
                     btnConnectToServer.BackColor = Color.White;
                 }
@@ -140,6 +167,8 @@ namespace RuRu_Comms
             catch (Exception ex)
             {
                 AppendLog($"Error connecting to server: {ex.Message}");
+
+                //change button back to connect
                 btnConnectToServer.Text = "Connect!";
                 btnConnectToServer.BackColor = Color.White;
             }
@@ -164,11 +193,11 @@ namespace RuRu_Comms
         }
 
         // Receive messages from the server
-        private void ReceiveMessages()
+        private void ReceiveMessages(CancellationToken token)
         {
             byte[] buffer = new byte[1024];
 
-            while (true)
+            while (!token.IsCancellationRequested)
             {
                 try
                 {
@@ -186,17 +215,20 @@ namespace RuRu_Comms
                 }
                 catch (Exception ex)
                 {
-                    AppendLog($"Error receiving message: {ex.Message}");
+                    if (!token.IsCancellationRequested)
+                    {
+                        AppendLog($"Error receiving message: {ex.Message}");
+                    }
                     break;
                 }
             }
-            AppendLog("Disconnected from server.");
-            //show connection button
-            Invoke(new Action(() =>
-            {
-                btnConnectToServer.Text = "Connect!";
-                btnConnectToServer.BackColor = Color.White;
-            }));
+
+            //show connection button I DON'T THINK THIS IS NEEDED
+            //Invoke(new Action(() =>
+            //{
+            //    btnConnectToServer.Text = "Connect!";
+            //    btnConnectToServer.BackColor = Color.White;
+            //}));
         }
 
         //this message displays the message correctly in the neat style tab
@@ -240,11 +272,12 @@ namespace RuRu_Comms
                 //print the message
                 printReceivedText(message, sendOrReceive);
 
-                printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
+                //don't need an extra space bc whatevers lol
+                //printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
 
                 //add a notification to the neat style tab
                 //  add || sendOrReceive == 1 for testing
-                if (sendOrReceive == 0 && tabControl1.SelectedTab == tabPage2)
+                if (sendOrReceive == 0 || sendOrReceive == 1)
                 {
                     newNotifications++;
                 }
@@ -262,10 +295,16 @@ namespace RuRu_Comms
             if(box == 0)
             {
                 displayMesg0.Text += message + Environment.NewLine;
+                // auto scroll-down the box
+                //displayMesg0.SelectedText = displayMesg0.Text.Length.ToString();
+                displayMesg0.ScrollToCaret();
             }
             else if(box == 1)
             {
                 displayMesg1.Text += message + Environment.NewLine;
+                //auto scroll-down the box
+                //displayMesg1.SelectedText = displayMesg1.Text.Length.ToString();
+                displayMesg1.ScrollToCaret();
             }
             else
             {
@@ -566,6 +605,9 @@ namespace RuRu_Comms
                 //reset panel and redraw
                 currentFeeling = null;
                 feelingWheelPanel.Invalidate(); // Redraw the panel
+
+                //change to the messages tab
+                tabControl1.SelectTab(tabPage2);
             }
         }
 
@@ -772,6 +814,41 @@ namespace RuRu_Comms
                 newNotifications = 0;
                 udpateNotificationLabel();
             }
+        }
+
+        private void displayFeelingButton1_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectTab(tabPage3);
+        }
+
+        //reset notification count
+        private void MessagesTab_UserActivity(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabPage2)
+            {
+                newNotifications = 0;
+                udpateNotificationLabel();
+            }
+        }
+
+        //this function makes it so that if the user interacts with the messages tab or button in any way,
+        //  the notification count resets
+        private void AttachUserActivityHandlers(Control parent)
+        {
+            //if the user messes with anything inside the tab...
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.MouseClick += MessagesTab_UserActivity;
+                ctrl.KeyDown += MessagesTab_UserActivity;
+                ctrl.GotFocus += MessagesTab_UserActivity;
+                // Recursively attach to child controls
+                AttachUserActivityHandlers(ctrl);
+            }
+
+            //if the user messes with the button...
+            btnSendMessage.MouseClick += MessagesTab_UserActivity;
+            btnSendMessage.KeyDown += MessagesTab_UserActivity;
+            btnSendMessage.GotFocus += MessagesTab_UserActivity;
         }
     }
 }

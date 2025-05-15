@@ -297,6 +297,7 @@
             this.displayFeelingButton1.TabIndex = 1;
             this.displayFeelingButton1.Text = "Me";
             this.displayFeelingButton1.UseVisualStyleBackColor = true;
+            this.displayFeelingButton1.Click += new System.EventHandler(this.displayFeelingButton1_Click);
             // 
             // tabPage3
             // 
@@ -328,7 +329,7 @@
             this.ClientSize = new System.Drawing.Size(773, 601);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
-            this.Text = "Peer-to-Peer App";
+            this.Text = "RuRu Comms";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
