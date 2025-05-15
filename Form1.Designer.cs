@@ -40,6 +40,7 @@
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.saveIP = new System.Windows.Forms.Button();
             this.loadIP = new System.Windows.Forms.Button();
+            this.welcomeLabel = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txtLog = new System.Windows.Forms.TextBox();
@@ -51,7 +52,6 @@
             this.displayFeelingButton1 = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.feelingWheelPanel = new System.Windows.Forms.Panel();
-            this.welcomeLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -189,6 +189,18 @@
             this.loadIP.UseVisualStyleBackColor = true;
             this.loadIP.Click += new System.EventHandler(this.loadIP_Click_1);
             // 
+            // welcomeLabel
+            // 
+            this.welcomeLabel.AutoSize = true;
+            this.welcomeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.welcomeLabel.Location = new System.Drawing.Point(371, 0);
+            this.welcomeLabel.Name = "welcomeLabel";
+            this.welcomeLabel.Size = new System.Drawing.Size(362, 47);
+            this.welcomeLabel.TabIndex = 10;
+            this.welcomeLabel.Text = "Welcome";
+            this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
@@ -209,7 +221,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 38);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(759, 453);
+            this.tabPage1.Size = new System.Drawing.Size(728, 431);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nerd Log";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -222,7 +234,7 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(753, 447);
+            this.txtLog.Size = new System.Drawing.Size(722, 425);
             this.txtLog.TabIndex = 5;
             // 
             // tabPage2
@@ -308,7 +320,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 38);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(759, 453);
+            this.tabPage3.Size = new System.Drawing.Size(728, 431);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Feeling Wheel";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -320,23 +332,11 @@
             this.feelingWheelPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.feelingWheelPanel.Location = new System.Drawing.Point(3, 3);
             this.feelingWheelPanel.Name = "feelingWheelPanel";
-            this.feelingWheelPanel.Size = new System.Drawing.Size(753, 447);
+            this.feelingWheelPanel.Size = new System.Drawing.Size(722, 425);
             this.feelingWheelPanel.TabIndex = 0;
             this.feelingWheelPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.FeelingWheelPanel_Paint);
             this.feelingWheelPanel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseClick);
             this.feelingWheelPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.FeelingWheelPanel_MouseMove);
-            // 
-            // welcomeLabel
-            // 
-            this.welcomeLabel.AutoSize = true;
-            this.welcomeLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.welcomeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcomeLabel.Location = new System.Drawing.Point(371, 0);
-            this.welcomeLabel.Name = "welcomeLabel";
-            this.welcomeLabel.Size = new System.Drawing.Size(362, 47);
-            this.welcomeLabel.TabIndex = 10;
-            this.welcomeLabel.Text = "Welcome";
-            this.welcomeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Form1
             // 

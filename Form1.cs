@@ -213,7 +213,7 @@ namespace RuRu_Comms
                     if (bytesRead == 0) break;
 
                     string parcel = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    //AppendLog($"Received: {message}");
+                    //AppendLog($"Received: {parcel}");
 
                     int newMesgIndex;
                     //this is for when the server sends buffered messages as one big message bc of TCP
@@ -229,7 +229,18 @@ namespace RuRu_Comms
                         {
                             printPretty(message, 0);
                         }));
-                    }                     
+                    }
+                    //print the last message if it exists
+                    if (parcel.Length > 0)
+                    {
+                        string message = parcel.TrimEnd('\r');
+                        AppendLog($"Received: {message}");
+                        Invoke(new Action(() =>
+                        {
+                            printPretty(message, 0);
+                        }));
+                    }
+
                 }
                 catch (Exception ex)
                 {
