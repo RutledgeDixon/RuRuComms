@@ -48,6 +48,8 @@ namespace RuRu_Comms
         private const string IP_PLACEHOLDER = "Magic #...";
         private int newNotifications = 0; //number of new notifications on the neat style tab
         private Font wheelFont = new Font("Arial", 12, FontStyle.Bold);
+        private bool nerdVisible = false;
+        private string clientId = string.Empty;
 
         //feelings for feelings wheel
         class Feeling
@@ -71,7 +73,8 @@ namespace RuRu_Comms
             InitializeComponent();
             // Attach event handlers for user activity on the messages tab
             //  this is for the notifications functionality
-            AttachUserActivityHandlers(tabPage2);
+            AttachUserActivityHandlers(tabPage2); 
+
             //IPText placeholder code
             SetPlaceholder(IPText, IP_PLACEHOLDER);
             IPText.GotFocus += (s, e) => RemovePlaceholder(IPText, IP_PLACEHOLDER);
@@ -96,6 +99,8 @@ namespace RuRu_Comms
 
             //nerd tab starts hidden
             tabControl1.TabPages.Remove(tabPage1);
+
+            
         }
 
         // Connect to the server
@@ -129,6 +134,7 @@ namespace RuRu_Comms
                 // Optional: await Task.Delay(100); // Give the OS a moment to release the socket
             }
 
+            //now try to connect to the server
             AppendLog($"Connecting to server {serverIp} on port {port}");
             try
             {
@@ -144,6 +150,8 @@ namespace RuRu_Comms
                 {
                     _networkStream = _tcpClient.GetStream();
                     AppendLog("Connected to server!");
+                    string sendId = "BxF_ID_" + clientId;
+                    SendMessage(sendId);
 
                     //change button to connected
                     btnConnectToServer.Text = "Connected!";
@@ -204,14 +212,24 @@ namespace RuRu_Comms
                     int bytesRead = _networkStream.Read(buffer, 0, buffer.Length);
                     if (bytesRead == 0) break;
 
-                    string message = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                    AppendLog($"Received: {message}");
-                    //display the message on the pretty tab
-                    //use invoke to run this on the main thread since receiveMessages us on a different thread
-                    Invoke(new Action(() =>
+                    string parcel = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+                    //AppendLog($"Received: {message}");
+
+                    int newMesgIndex;
+                    //this is for when the server sends buffered messages as one big message bc of TCP
+                    while ((newMesgIndex = parcel.IndexOf('\n')) >= 0)
                     {
-                        printPretty(message, 0);
-                    }));
+                        //extract the message
+                        string message = parcel.Substring(0, newMesgIndex).TrimEnd('\r');
+                        parcel = parcel.Substring(newMesgIndex + 1);
+
+                        //process the message
+                        AppendLog($"Received: {message}");
+                        Invoke(new Action(() =>
+                        {
+                            printPretty(message, 0);
+                        }));
+                    }                     
                 }
                 catch (Exception ex)
                 {
@@ -277,7 +295,7 @@ namespace RuRu_Comms
 
                 //add a notification to the neat style tab
                 //  add || sendOrReceive == 1 for testing
-                if (sendOrReceive == 0 || sendOrReceive == 1)
+                if (sendOrReceive == 0)
                 {
                     newNotifications++;
                 }
@@ -337,9 +355,10 @@ namespace RuRu_Comms
             IPAddress = IPText.Text.Trim();
 
             // easter egg - if the input is "turtles" then show nerd log
-            if (IPAddress.Equals("turtles", StringComparison.OrdinalIgnoreCase))
+            if (IPAddress.Equals("turtles", StringComparison.OrdinalIgnoreCase) && !nerdVisible)
             {
                 tabControl1.TabPages.Insert(0, tabPage1);
+                nerdVisible = true;
                 return;
             }
 
@@ -720,7 +739,8 @@ namespace RuRu_Comms
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //initialize clientId
+            clientId = initializeClientId();
         }
 
         private void tabPage3_Click(object sender, EventArgs e)
@@ -849,6 +869,41 @@ namespace RuRu_Comms
             btnSendMessage.MouseClick += MessagesTab_UserActivity;
             btnSendMessage.KeyDown += MessagesTab_UserActivity;
             btnSendMessage.GotFocus += MessagesTab_UserActivity;
+        }
+
+        // Replace the line causing the error with the following code to use a standard Windows Forms input dialog instead of relying on Microsoft.VisualBasic.Interaction.InputBox.
+
+        private string initializeClientId()
+        {
+            // Check if a clientId.json file exists
+            if (System.IO.File.Exists("clientId.json"))
+            {
+                // Read the json file
+                string jsonContent = System.IO.File.ReadAllText("clientId.json");
+                // Deserialize it into a string
+                string id = JsonConvert.DeserializeObject<string>(jsonContent);
+                return id;
+            }
+            else
+            {
+                using (var inputForm = new Form2())
+                {
+                    if (inputForm.ShowDialog(this) == DialogResult.OK)
+                    {
+                        string id = inputForm.Name;
+
+                        //create the json file with the clientId
+                        string clientIdJson = JsonConvert.SerializeObject(id, Formatting.Indented);
+                        System.IO.File.WriteAllText("clientId.json", clientIdJson);
+                        //return the clientId
+                        return id;
+                    }
+                }
+
+                
+            }
+
+            return "Client"; // Default value if no input is provided
         }
     }
 }

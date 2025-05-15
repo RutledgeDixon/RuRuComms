@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|C:\\Users\\rutle\\source\\repos\\RuRuComms\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|c:\\users\\rutle\\source\\repos\\rurucomms\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|c:\\users\\rutle\\source\\repos\\rurucomms\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,12 +15,20 @@
       "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|C:\\Users\\rutle\\source\\repos\\RuRuComms\\messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|C:\\Users\\rutle\\source\\repos\\RuRuComms\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|c:\\users\\rutle\\source\\repos\\rurucomms\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|C:\\Users\\rutle\\source\\repos\\RuRuComms\\messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|C:\\Users\\rutle\\source\\repos\\RuRuComms\\messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{E7B2B828-3C4C-4262-9C72-E6F6F8BE2735}|RuRu Comms.csproj|solutionrelative:messagewindowform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,26 +46,53 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form2.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form2.cs [Design]*",
+              "RelativeToolTip": "Form2.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T21:04:35.592Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form2.cs*",
+              "RelativeToolTip": "Form2.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-15T21:06:52.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "MessageWindowForm.cs",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\MessageWindowForm.cs",
               "RelativeDocumentMoniker": "MessageWindowForm.cs",
               "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\MessageWindowForm.cs",
               "RelativeToolTip": "MessageWindowForm.cs",
-              "ViewState": "AgIAADIAAAAAAAAAAAAAAEEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAIwEEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T16:08:39.116Z"
+              "WhenOpened": "2025-05-10T16:08:39.116Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "MessageWindowForm.cs [Design]",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\MessageWindowForm.cs",
               "RelativeDocumentMoniker": "MessageWindowForm.cs",
               "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\MessageWindowForm.cs [Design]",
               "RelativeToolTip": "MessageWindowForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-10T16:02:22.738Z"
+              "WhenOpened": "2025-05-10T16:02:22.738Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
@@ -67,20 +102,20 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AgIAAHkAAAAAAAAAAAAQwIAAAABXAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-09T22:09:26.115Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
               "ToolTip": "C:\\Users\\rutle\\source\\repos\\RuRuComms\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AgIAAEMBAAAAAAAAAAAQwEsBAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAwwIMAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-10T03:20:34.608Z",
               "EditorCaption": ""
