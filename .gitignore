@@ -3,5 +3,5 @@
 ################################################################################
 .vs/
 *.vsidx
-/.vs/RuRu Comms/FileContentIndex/d9f59953-4e66-47d6-85f0-66927c54f74e.vsidx
 /bin/Debug/clientId.json
+/bin/Debug/ip.json
