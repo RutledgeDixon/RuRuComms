@@ -1,11 +1,11 @@
 # RuRuComms
-Communication side of RuRu
+**Communication side of RuRu**
 
 Works with a simple TCP server that is capable of storing buffered messages and sending to the other client upon connection.
 
 The server only allows 2 connected clients at a time.
 
-If you are not sure how to install:
+**If you are not sure how to install:**
 
   1. Click the green code button
   
