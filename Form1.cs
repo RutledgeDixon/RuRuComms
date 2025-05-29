@@ -185,12 +185,11 @@ namespace RuRu_Comms
         // Send a message to the server
         private void SendMessage(string message)
         {
-            if (_networkStream != null)
+            if (_tcpClient != null && _tcpClient.Connected && _networkStream != null)
             {
                 byte[] data = Encoding.UTF8.GetBytes(message);
                 _networkStream.Write(data, 0, data.Length);
 
-                AppendLog("Sent: " + message);
                 printPretty(message, 1);
             }
             else
@@ -299,7 +298,7 @@ namespace RuRu_Comms
                 }
                 else if (message.StartsWith("BxF_ID_"))
                 {
-                    AppendLog($"Sent client ID: {message}");
+                    AppendLog($"Sent client ID: {message.Substring("BxF_ID_".Length)}");
                 }
                 else if (message.StartsWith("BxF_SERVER_"))
                 {
@@ -331,7 +330,14 @@ namespace RuRu_Comms
             {
                 //print the message
                 printReceivedText(message, sendOrReceive);
-                AppendLog($"Received: {message}");
+                if (sendOrReceive == 0)
+                {
+                    AppendLog($"Received: {message}");
+                }
+                else
+                {
+                    AppendLog($"Sent: {message}");
+                }
                 //don't need an extra space bc whatevers lol
                 //printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
 
@@ -676,7 +682,6 @@ namespace RuRu_Comms
         {
             string message = "BxF_FEEL_" + feeling;
             SendMessage(message);
-            AppendLog($"Sent feeling: {message}");
         }
 
         // sendOrReceive: 0 is receive, 1 is send
@@ -798,6 +803,11 @@ namespace RuRu_Comms
 
         private void loadIP_Click_1(object sender, EventArgs e)
         {
+            //check if the file exists
+            if (!System.IO.File.Exists("ip.json"))
+            {
+                return;
+            }
             //read the json file
             string jsonContent = System.IO.File.ReadAllText("ip.json");
             //deserialize it into a string
