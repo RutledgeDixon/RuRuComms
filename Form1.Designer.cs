@@ -149,6 +149,7 @@
             this.IPText.Size = new System.Drawing.Size(120, 30);
             this.IPText.TabIndex = 8;
             this.IPText.TextChanged += new System.EventHandler(this.IPText_TextChanged_1);
+            this.IPText.KeyDown += new System.Windows.Forms.KeyEventHandler(this.IPText_Key_Down);
             // 
             // tableLayoutPanel4
             // 

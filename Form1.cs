@@ -234,7 +234,6 @@ namespace RuRu_Comms
                     if (parcel.Length > 0)
                     {
                         string message = parcel.TrimEnd('\r');
-                        AppendLog($"Received: {message}");
                         Invoke(new Action(() =>
                         {
                             printPretty(message, 0);
@@ -283,6 +282,7 @@ namespace RuRu_Comms
                     if (f != null)
                     {
                         updateFeelingOnNeatStyle(f, sendOrReceive);
+                        AppendLog($"Received feeling '{feelingName}'");
                     }
                     else
                     {
@@ -293,14 +293,14 @@ namespace RuRu_Comms
                 else
                 {
                     //Right now this is where BxFxx and BxF_SERVER_ messages go, they aren't used
-                    AppendLog($"Unhandled coded message: {message}");
+                    AppendLog($"Coded message not handled yet: {message}");
                 }
             }
             else
             {
                 //print the message
                 printReceivedText(message, sendOrReceive);
-
+                AppendLog($"Received: {message}");
                 //don't need an extra space bc whatevers lol
                 //printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
 
@@ -937,6 +937,14 @@ namespace RuRu_Comms
                     string message = messageForm.Message;
                     SendMessage(message);
                 }
+            }
+        }
+
+        private void IPText_Key_Down(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == (char)Keys.Enter)
+            {
+                btnConnectToServer_Click(sender, e);
             }
         }
     }
