@@ -282,12 +282,43 @@ namespace RuRu_Comms
                     if (f != null)
                     {
                         updateFeelingOnNeatStyle(f, sendOrReceive);
-                        AppendLog($"Received feeling '{feelingName}'");
+                        if (sendOrReceive == 0)
+                        {
+                            AppendLog($"Received feeling '{feelingName}'");
+                        }
+                        else
+                        {
+                            AppendLog($"Sent feeling '{feelingName}'");
+                        }
                     }
                     else
                     {
                         AppendLog($"Feeling '{feelingName}' not found in the tree. Updating manually");
                         updateFeelingOnNeatStyle_Manual_(feelingName, sendOrReceive);
+                    }
+                }
+                else if (message.StartsWith("BxF_ID_"))
+                {
+                    AppendLog($"Sent client ID: {message}");
+                }
+                else if (message.StartsWith("BxF_SERVER_"))
+                {
+                    string msg = message.Substring("BxF_SERVER_New connection: ".Length);
+
+                    if (message.StartsWith("BxF_SERVER_New Connection: "))
+                    {
+                        
+                        AppendLog($"New client connected: {msg}");
+                        printReceivedText($"{msg} just connected!", sendOrReceive);
+                    }
+                    else if (message.StartsWith("BxF_SERVER_Client disconnected: "))
+                    {
+                        AppendLog($"Client disconnected: {msg}");
+                        printReceivedText($"{msg} just disconnected :'(", sendOrReceive);
+                    }
+                    else
+                    {
+                        AppendLog($"Received server message: {message.Substring("BxF_SERVER_".Length)}");
                     }
                 }
                 else
