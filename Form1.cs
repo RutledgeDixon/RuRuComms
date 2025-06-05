@@ -218,7 +218,6 @@ namespace RuRu_Comms
                         parcel = parcel.Substring(newMesgIndex + 1);
 
                         //process the message
-                        AppendLog($"Received: {message}");
                         Invoke(new Action(() =>
                         {
                             printPretty(message, 0);
