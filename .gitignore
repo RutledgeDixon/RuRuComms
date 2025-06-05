@@ -4,4 +4,4 @@
 .vs/
 *.vsidx
 /bin/Debug/clientId.json
-/bin/Debug/ip.json
+ip.json
