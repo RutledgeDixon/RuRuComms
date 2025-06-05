@@ -21,6 +21,7 @@ using Newtonsoft.Json;
  *      
  *      Codes:
  *          Basic: "BxF"
+ *          ID: "BxF_ID_"
  *          Simple mesg: "BxFxx"
  *          Feeling: "BxF_FEEL_"
  *          Server: "BxF_SERVER_"
@@ -28,12 +29,6 @@ using Newtonsoft.Json;
 
 /*    TODO:
       add animation to feeling wheel? like mouse-over
-      add confirmation for user that the feeling was updated on feeling wheel tab
-      neat style tab has to be tested to ensure the messages on each side are staggered correctly
-
-      for server: add a variable that keeps current feeling for each client, sends it upon
-                  connection to other clients, updated by feeling wheel
-                  add a buffer that keeps all incoming messages (up to 100 messages maybe? and sends them upon connection of another client)
 */
 
 namespace RuRu_Comms
@@ -250,12 +245,12 @@ namespace RuRu_Comms
                 }
             }
 
-            //show connection button I DON'T THINK THIS IS NEEDED
-            //Invoke(new Action(() =>
-            //{
-            //    btnConnectToServer.Text = "Connect!";
-            //    btnConnectToServer.BackColor = Color.White;
-            //}));
+            //change connection button back to connect
+            Invoke(new Action(() =>
+            {
+                btnConnectToServer.Text = "Connect!";
+                btnConnectToServer.BackColor = Color.White;
+            }));
         }
 
         //this message displays the message correctly in the neat style tab
@@ -338,11 +333,8 @@ namespace RuRu_Comms
                 {
                     AppendLog($"Sent: {message}");
                 }
-                //don't need an extra space bc whatevers lol
-                //printReceivedText(string.Empty, Math.Abs(sendOrReceive - 1)); // add empty line to the other side
 
                 //add a notification to the neat style tab
-                //  add || sendOrReceive == 1 for testing
                 if (sendOrReceive == 0)
                 {
                     newNotifications++;
