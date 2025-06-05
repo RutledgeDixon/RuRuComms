@@ -937,7 +937,7 @@ namespace RuRu_Comms
                 {
                     if (inputForm.ShowDialog(this) == DialogResult.OK)
                     {
-                        string id = inputForm.Name;
+                        string id = inputForm.UserName;
 
                         //create the json file with the clientId
                         string clientIdJson = JsonConvert.SerializeObject(id, Formatting.Indented);

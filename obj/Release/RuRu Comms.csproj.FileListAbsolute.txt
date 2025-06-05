@@ -1,0 +1,15 @@
+C:\Users\rutle\Source\Repos\RuRuComms\bin\Release\RuRu Comms.exe.config
+C:\Users\rutle\Source\Repos\RuRuComms\bin\Release\RuRu Comms.exe
+C:\Users\rutle\Source\Repos\RuRuComms\bin\Release\RuRu Comms.pdb
+C:\Users\rutle\Source\Repos\RuRuComms\bin\Release\Newtonsoft.Json.dll
+C:\Users\rutle\Source\Repos\RuRuComms\bin\Release\Newtonsoft.Json.xml
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu Comms.csproj.AssemblyReference.cache
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu_Comms.Form1.resources
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu_Comms.Form2.resources
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu_Comms.MessageWindowForm.resources
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu_Comms.Properties.Resources.resources
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu Comms.csproj.GenerateResource.cache
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu Comms.csproj.CoreCompileInputs.cache
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu Comms.csproj.Up2Date
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu Comms.exe
+C:\Users\rutle\Source\Repos\RuRuComms\obj\Release\RuRu Comms.pdb

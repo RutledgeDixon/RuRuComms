@@ -12,7 +12,7 @@ namespace RuRu_Comms
 {
     public partial class Form2 : Form
     {
-        public string Name { get; private set; } = string.Empty;
+        public string UserName { get; private set; } = string.Empty;
         public Form2()
         {
             InitializeComponent();
@@ -22,7 +22,7 @@ namespace RuRu_Comms
         {
             if(nameTextBox.Text != string.Empty)
             {
-                Name = nameTextBox.Text.Trim();
+                UserName = nameTextBox.Text.Trim();
                 DialogResult = DialogResult.OK;
                 Close();
             }
