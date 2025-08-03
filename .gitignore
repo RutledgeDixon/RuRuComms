@@ -5,3 +5,4 @@
 *.vsidx
 /bin/Debug/clientId.json
 ip.json
+/bin/Release/clientId.json
