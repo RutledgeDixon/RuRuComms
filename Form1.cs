@@ -35,7 +35,7 @@ namespace RuRu_Comms
 {
     public partial class Form1 : Form
     {
-        private const int DiscoveryPort = 5000;
+        private const int DiscoveryPort = 50512;
         private string IPAddress = "Error";
         private TcpClient _tcpClient;
         private NetworkStream _networkStream;
@@ -981,3 +981,4 @@ namespace RuRu_Comms
         }
     }
 }
+
